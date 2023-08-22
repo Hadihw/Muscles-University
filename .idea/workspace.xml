@@ -16,7 +16,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Linkify" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -128,7 +128,7 @@
       <workItem from="1692384408060" duration="12487000" />
       <workItem from="1692471194249" duration="1392000" />
       <workItem from="1692473741279" duration="3084000" />
-      <workItem from="1692640926866" duration="8666000" />
+      <workItem from="1692640926866" duration="8723000" />
     </task>
     <servers />
   </component>
