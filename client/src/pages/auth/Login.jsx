@@ -6,8 +6,8 @@ import axios from "axios";
 import { TypeAnimation } from 'react-type-animation';
 
 function Login() {
-  const [password, setPass] = useState({});
-  const [email, setEmail] = useState({});
+  const [password, setPass] = useState("");
+  const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState(""); // Add this line
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ function Login() {
   };
 
   React.useEffect(() => {
-    if (localStorage.getItem("loggedIn") === 1) {
+    if (localStorage.getItem("loggedIn") === '1') {
       navigate("/");
     }
   }, []);
