@@ -11,13 +11,11 @@ function App() {
     return (
         <Router>
             {loggedIn ? (
-                <div className="transition-opacity duration-500 ease-in opacity-100">
                     <Dashboard />
-                </div>
+
             ) : (
-                <div className="transition-opacity duration-500 ease-in opacity-100">
                     <AuthRoutes />
-                </div>
+
             )}
         </Router>
     );

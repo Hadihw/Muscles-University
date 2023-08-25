@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="378d2f8b-ea5b-4b3d-aac5-89db784db402" name="Changes" comment="initial">
-      <change afterPath="$PROJECT_DIR$/client/src/hooks/useLocalStorage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MU.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MU.iml" afterDir="false" />
+    <list default="true" id="378d2f8b-ea5b-4b3d-aac5-89db784db402" name="Changes" comment="intial">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Camera/Camera.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Camera/Camera.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/DashboardNavbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Dashboard/DashboardNavbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Register/Step2.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Register/Step2.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/auth/Login.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,10 +24,18 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/client/package.json" />
   </component>
   <component name="ProjectId" id="2N6rxZvGHC8pu4VPG5QTWuuw85A" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -139,7 +146,8 @@
       <workItem from="1692473741279" duration="3084000" />
       <workItem from="1692640926866" duration="9139000" />
       <workItem from="1692723394821" duration="2424000" />
-      <workItem from="1692814065324" duration="13441000" />
+      <workItem from="1692814065324" duration="13571000" />
+      <workItem from="1692910348092" duration="9925000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1692668118762</created>
@@ -148,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692668118762</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="intial">
+      <created>1692848878307</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1692848878307</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +182,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial" />
+    <MESSAGE value="intial" />
+    <option name="LAST_COMMIT_MESSAGE" value="intial" />
   </component>
 </project>

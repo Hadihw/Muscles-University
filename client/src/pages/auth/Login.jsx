@@ -19,7 +19,8 @@ function Login() {
         localStorage.setItem("email", res.data.email);
         localStorage.setItem("uname", res.data.name);
         localStorage.setItem("loggedIn", 1);
-        navigate("/");
+        navigate("/Home");
+        window.location.reload();
       })
       .catch((err) => {
         if (err.response && err.response.status === 401) {
@@ -33,7 +34,7 @@ function Login() {
 
   React.useEffect(() => {
     if (localStorage.getItem("loggedIn") === '1') {
-      navigate("/");
+      navigate("/Home");
     }
   }, []);
 
