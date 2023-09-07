@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import * as tf from '@tensorflow/tfjs';
 import * as posenet from '@tensorflow-models/posenet';
 import {FaPlay, FaStop} from "react-icons/all";
 

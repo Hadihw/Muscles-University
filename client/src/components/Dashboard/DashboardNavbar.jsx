@@ -17,6 +17,7 @@ const DashboardNavbar = ({ onTabChange }) => {
 		localStorage.removeItem("uid");
 		localStorage.removeItem("loggedIn");
 		navigate("/login");
+		window.location.reload();
 	};
 
 	return (
