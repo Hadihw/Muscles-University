@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaRunning } from 'react-icons/fa';
 
-const Workout = () => {
+const Nutrition = () => {
 
 	return (
 		<div className="h-screen flex flex-col justify-center items-center">
@@ -11,4 +11,4 @@ const Workout = () => {
 };
 
 
-export default Workout;
+export default Nutrition;

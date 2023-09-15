@@ -1,69 +1,66 @@
-const Subscription = require('../models/subscriptionModel');
+const { usersCollection } = require('../config/firebase');
+const admin = require("firebase-admin");
 
-// Get all subscriptions
-exports.getSubscriptions = async (req, res) => {
-	try {
-		const subscriptions = await Subscription.find();
-		res.status(200).json({ success: true, data: subscriptions });
-	} catch (error) {
-		res.status(500).json({ success: false, message: error.message });
+async function updateSubscription(req, res) {
+	const { id } = req.params;
+	const {
+		subscriptionType,
+		billingCycle,
+		autoRenewal
+	} = req.body;
+
+	if (!subscriptionType || !billingCycle || autoRenewal === undefined) {
+		return res.status(400).json({ message: 'Missing subscription details' });
 	}
-};
 
-// Get a single subscription by ID
-exports.getSubscription = async (req, res) => {
-	try {
-		const subscription = await Subscription.findById(req.params.id);
+	const startDate = new Date();
+	let subscriptionEndDate;
 
-		if (!subscription) {
-			return res.status(404).json({ success: false, message: 'Subscription not found' });
-		}
-
-		res.status(200).json({ success: true, data: subscription });
-	} catch (error) {
-		res.status(500).json({ success: false, message: error.message });
+	switch (subscriptionType) {
+		case "Free":
+			subscriptionEndDate = null; // Infinite end date for Free plan
+			break;
+		case "Monthly":
+			subscriptionEndDate = admin.firestore.Timestamp.fromDate(new Date(startDate.setMonth(startDate.getMonth() + 1)));
+			break;
+		case "Annually":
+			subscriptionEndDate = admin.firestore.Timestamp.fromDate(new Date(startDate.setFullYear(startDate.getFullYear() + 1)));
+			break;
+		default:
+			return res.status(400).json({ message: 'Invalid subscription type' });
 	}
-};
 
-// Create a new subscription
-exports.createSubscription = async (req, res) => {
+	const userRef = usersCollection.doc(id);
 	try {
-		const subscription = await Subscription.create(req.body);
-		res.status(201).json({ success: true, data: subscription });
-	} catch (error) {
-		res.status(400).json({ success: false, message: error.message });
-	}
-};
-
-// Update a subscription
-exports.updateSubscription = async (req, res) => {
-	try {
-		const subscription = await Subscription.findByIdAndUpdate(req.params.id, req.body, {
-			new: true,
-			runValidators: true,
+		await userRef.update({
+			"subscription.type": subscriptionType,
+			"subscription.startDate": admin.firestore.Timestamp.fromDate(startDate),
+			"subscription.endDate": subscriptionEndDate,
+			"subscription.billingCycle": billingCycle,
+			"subscription.autoRenewal": autoRenewal
 		});
 
-		if (!subscription) {
-			return res.status(404).json({ success: false, message: 'Subscription not found' });
-		}
-
-		res.status(200).json({ success: true, data: subscription });
+		res.status(200).json({ message: 'Subscription updated successfully.' });
 	} catch (error) {
-		res.status(400).json({ success: false, message: error.message });
+		console.error("Error updating subscription:", error);
+		res.status(500).send("Error updating subscription");
 	}
-};
+}
 
-// Delete a subscription
-exports.deleteSubscription = async (req, res) => {
-	try {
-		const subscription = await Subscription.findByIdAndDelete(req.params.id);
-
-		if (!subscription) {
-			return res.status(404).json({ success: false, message: 'Subscription not found' });
-		}
-
-		res.status(200).json({ success: true, message: 'Subscription deleted' });
-	} catch (error) {
-		res.status(500).json({ success: false, message: error.message });
+function canAccessFeatures(userSubscription) {
+	if (userSubscription.type === 'Free') {
+		return false; // Only has access to free features
 	}
+
+	const currentDate = new Date();
+	if (userSubscription.endDate && userSubscription.endDate > currentDate) {
+		return true; // Has access to premium features until endDate
+	}
+
+	return false; // No longer has access to premium features
+}
+
+module.exports = {
+	updateSubscription,
+	canAccessFeatures
 };

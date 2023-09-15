@@ -1,21 +1,11 @@
-const express = require('express');
-const {
-	getSubscriptions,
-	getSubscription,
-	createSubscription,
-	updateSubscription,
-	deleteSubscription,
-} = require('../controllers/subscriptionController');
+const express = require("express");
+const subscriptionC = require("../controllers/subscriptionController");
+const authJWT = require("../middleware/authJWT");
 
 const router = express.Router();
 
-router.route('/')
-	.get(getSubscriptions)
-	.post(createSubscription);
+router.put("/updateSubscription/:id", authJWT, subscriptionC.updateSubscription);
 
-router.route('/:id')
-	.get(getSubscription)
-	.put(updateSubscription)
-	.delete(deleteSubscription);
+
 
 module.exports = router;

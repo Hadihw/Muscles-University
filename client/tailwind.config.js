@@ -14,7 +14,10 @@ module.exports = {
     colors: {
       'medium': '#9F8157',
       'dark':'#745228',
-      'light':'#FBEDC7'
+      'light':'#FBEDC7',
+      'gullGray': '#9CA5B4',
+      'Manatee' : '#8F96A7'
+
     },
     container: {
       center: true,
@@ -41,6 +44,5 @@ module.exports = {
   },
   plugins: [
     require("daisyui"),
-    require("tw-elements/dist/plugin")
   ],
 }

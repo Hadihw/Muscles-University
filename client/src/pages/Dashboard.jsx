@@ -1,48 +1,102 @@
-import React, { useState, useEffect } from 'react';
-import DashNav from '../components/Dashboard/DashboardNavbar';
-import Home from '../components/Dashboard/Home/Home';
-import Profile from '../components/Dashboard/Profile/Profile';
-import { useNavigate } from 'react-router-dom';
-import Workout from "../components/Dashboard/Workout/Workout";
+import React, {lazy, Suspense, useEffect, useState} from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import DashboardNavbar from '../components/Dashboard/DashboardNavbar';
+import axios from "axios";
+import LoadingIndicator from "../components/UI/LoadingIndicator";
+import SubscriptionPlans from "../components/Dashboard/SubscriptionPlan";
+import {useDispatch} from "react-redux";
+import {setNotSubscribed, setSubscribed} from "../Redux/authSlice";
+import Nutrition from "../components/Dashboard/Nutrition/Nutrition";
 
-const Dashboard = () => {
-    const [activeTab, setActiveTab] = useState('home');
 
-    const handleTabChange = (tabName) => {
-        setActiveTab(tabName);
-    };
+const Home = lazy(() => import('../components/Dashboard/Home/Home'));
+const Profile = lazy(() => import('../components/Dashboard/Profile/Profile'));
+const Workout = lazy(() => import('../components/Dashboard/Workout/Workout'));
+const Messages= lazy(() => import('../components/Dashboard/Messages/Messages'));
 
-    const isLoggedIn = localStorage.getItem('loggedIn');
+
+function RedirectToHome() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!isLoggedIn) {
-            navigate('/login');
-        }
-    }, [isLoggedIn, navigate]);
+        navigate('/Dashboard/Home');
+    }, [navigate]);
+
+    return null;
+}
+
+const Dashboard = () => {
+
+    const dispatch = useDispatch();
+    const userID = localStorage.getItem('userID');
+    const [userData, setUserData] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+
+
+    useEffect(() => {
+        // Fetch user data
+        axios.get(`/api/user/getUser/${userID}`)
+            .then(response => {
+                const user = response.data;
+                setUserData(user);
+
+                if (user && user.subscription && user.subscription.endDate) {
+                    const currentDate = new Date();
+                    const endDate = new Date(user.subscription.endDate._seconds * 1000);
+
+                    // Check endDate
+                    if (endDate > currentDate) {
+                        dispatch(setSubscribed());
+                    } else {
+                        dispatch(setNotSubscribed());
+                    }
+                }
+                setIsLoading(false);
+            })
+            .catch(error => {
+                console.error("Error fetching subscription status:", error);
+                setIsLoading(false);
+            });
+    }, [dispatch]);
+
+    if (isLoading) {
+        return (
+            <div className="flex h-screen justify-center items-center">
+                <LoadingIndicator/>
+            </div>
+        );
+    }
 
     return (
-        <>
-            {isLoggedIn && (
                 <div className="h-screen w-full flex bg-gray-200 overflow-hidden">
                     <div className="rounded-lg shadow-lg flex-grow flex">
                         <div className="border-r border-gray-300">
-                            <DashNav onTabChange={handleTabChange} />
+                            <DashboardNavbar userData={userData} />
                         </div>
                         <div className="flex-1 h-full overflow-hidden">
-                            <div className="bg-light rounded-lg shadow-lg h-full overflow-y-auto">
+                            <div className="bg-manatee rounded-lg shadow-lg h-full">
                                 <div className="py-2 px-4 md:px-6">
-                                    {activeTab === 'home' && <Home />}
-                                    {activeTab === 'profile' && <Profile />}
-                                    {activeTab === 'workout' && <Workout />}
+                                    <Suspense fallback={
+                                        <div className="flex h-screen justify-center items-center">
+                                            <LoadingIndicator/>
+                                        </div>
+                                    }>
+                                        <Routes>
+                                            <Route path="/Dashboard/Home" element={<Home  userData={userData}/>} />
+                                            <Route path="/Dashboard/Profile" element={<Profile userData={userData}/>} />
+                                            <Route path="/Dashboard/Workout" element={<Workout/>} />
+                                            <Route path="/Dashboard/Messages" element={<Messages userData={userData}/>} />
+                                            <Route path="/Dashboard/Nutrition" element={<Nutrition/>} />
+                                            <Route path="/Dashboard/SubscriptionPlans" element={<SubscriptionPlans />} />
+                                            <Route path="/Dashboard" element={<RedirectToHome />} />
+                                            <Route path="*" element={<RedirectToHome />} />
+                                        </Routes>
+                                    </Suspense>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            )}
-        </>
-    );
-};
+            )};
 
 export default Dashboard;

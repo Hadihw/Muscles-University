@@ -1,13 +1,22 @@
-import { defineConfig } from 'vite'
-import reactRefresh from '@vitejs/plugin-react-refresh'
+// vite.config.js
 
-// https://vitejs.dev/config/
+import { defineConfig } from 'vite';
+import reactRefresh from '@vitejs/plugin-react-refresh';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: '../.env' });
+
 export default defineConfig({
   plugins: [reactRefresh()],
   server: {
     host: true,
     proxy: {
-      '/api': 'http://localhost:8080'
-    }
-  }
-})
+      '/api': {
+        target: 'http://localhost:8080',
+        // Add these lines
+        secure: false,
+        changeOrigin: true,
+      },
+    },
+  },
+});

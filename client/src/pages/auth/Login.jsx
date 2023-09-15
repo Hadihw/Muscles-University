@@ -1,45 +1,146 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { Link, Router, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import axios from "axios";
 import { TypeAnimation } from 'react-type-animation';
+import googleLogo from '../../../assets/images/googleLogo.png';
+import app from "../../../Firebase/firebaseConfig";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, fetchSignInMethodsForEmail } from "firebase/auth";
+
+
+// Create an Axios instance
+const axiosInstance = axios.create({
+    baseURL: 'http://localhost:3000/api',
+    withCredentials: true,
+});
+
+axiosInstance.interceptors.request.use((config) => {
+    return config;
+}, (error) => {
+    return Promise.reject(error);
+});
+
+// Axios Response Interceptor
+axiosInstance.interceptors.response.use((response) => {
+    return response;
+}, async (error) => {
+    const originalRequest = error.config;
+    if (error.response.status === 401 && !originalRequest._retry) {
+        originalRequest._retry = true;
+        // Implement server-side refresh mechanism here
+        return axiosInstance(originalRequest);
+    }
+    return Promise.reject(error);
+});
+
 
 function Login() {
   const [password, setPass] = useState("");
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState(""); // Add this line
   const navigate = useNavigate();
+  const auth = getAuth();
+  const provider = new GoogleAuthProvider();
 
-  const login = async () => {
-    await axios
-      .post("/api/account/login", { email, password })
-      .then((res) => {
-        localStorage.setItem("uid", res.data._id);
-        localStorage.setItem("email", res.data.email);
-        localStorage.setItem("uname", res.data.name);
-        localStorage.setItem("loggedIn", 1);
-        navigate("/Home");
-        window.location.reload();
-      })
-      .catch((err) => {
-        if (err.response && err.response.status === 401) {
-          setErrorMessage("Invalid email or password.");
-        } else {
-          setErrorMessage("Something went wrong. Please try again later.");
+    const handleGoogleSignIn = async () => {
+        try {
+            provider.setCustomParameters({
+                'prompt': 'select_account'
+            });
+            const result = await signInWithPopup(auth, provider);
+            const token = await result.user.getIdToken();
+
+            // Send this token to your server for verification
+            const response = await fetch("/api/auth/google/googleLogin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ idToken: token }),
+            });
+
+            const data = await response.json();
+
+            if (response.status !== 200) {
+                setErrorMessage(data.message); // Display the error message from server
+                return; // Exit the function to prevent further execution
+            }
+
+            // Store the user ID in local storage
+            localStorage.setItem('userID', data.uid);
+
+            console.log("Server response:", data);
+
+            // Navigate to Dashboard
+            navigate("/Dashboard/Home");
+            window.location.reload();
+
+        } catch (error) {
+            console.error(error);
+            setErrorMessage("Something went wrong. Please try again later.");
         }
-        console.log("Error", err);
-      });
-  };
+    };
 
-  React.useEffect(() => {
-    if (localStorage.getItem("loggedIn") === '1') {
-      navigate("/Home");
-    }
-  }, []);
+    const login = async () => {
+        const auth = getAuth();
+        try {
+            // Authenticate using Firebase client SDK
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const firebaseToken = await userCredential.user.getIdToken();
+
+            // Send the Firebase ID token to your server
+            await axiosInstance
+                .post("/auth/login", { firebaseToken })
+                .then((res) => {
+                    // Store the user ID in local storage
+                    localStorage.setItem('userID', res.data.uid);
+                    // Navigate to Dashboard
+                    navigate("/Dashboard/Home");
+                    window.location.reload();
+                })
+                .catch((err) => {
+                    if (err.response && err.response.status === 401) {
+                        setErrorMessage("Invalid email or password.");
+                    } else {
+                        setErrorMessage(err.message || "Something went wrong. Please try again later.");
+                    }
+                    console.log("Error", err);
+                });
+
+        } catch (error) {
+            console.error("Firebase error:", error);
+            if (error.code) {
+                switch (error.code) {
+                    case "auth/user-not-found":
+                        setErrorMessage("User does not exist.");
+                        break;
+                    case "auth/wrong-password":
+                        const signInMethods = await fetchSignInMethodsForEmail(auth, email);
+                        if (signInMethods.includes("google.com")) {
+                            setErrorMessage("This email is registered with Google. Please Sign in with Google.");
+                            return;
+                        } else {
+                            setErrorMessage("Invalid Password.");
+                        }
+                        break;
+                    case "auth/invalid-email":
+                        setErrorMessage("Invalid email format.");
+                        break;
+                    //... add more error cases as needed
+                    default:
+                        setErrorMessage("Firebase authentication failed. Please try again.");
+                }
+            } else {
+                setErrorMessage("Firebase authentication failed. Please try again.");
+            }
+        }
+
+    };
+
 
   return (
-    <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="flex bg-manatee h-screen justify-center py-12 px-4 sm:px-6 lg:px-8">
       <Helmet>
         <meta charSet="utf-8" />
         <title>Login</title>
@@ -149,6 +250,12 @@ function Login() {
         <button
           type="submit"
           className="font-axiom group relative flex w-full justify-center rounded-md border border-transparent bg-dark py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          style={{
+            boxShadow: '0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25)',
+            backgroundPosition: '12px 11px',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: '18px 18px'
+          }}
         >
           <span className="absolute inset-y-0 left-0 flex items-center pl-3">
             <LockClosedIcon
@@ -158,6 +265,25 @@ function Login() {
           </span>
           Sign in
         </button>
+        <div className="mt-4"> {/* Added margin-top */}
+          <button
+              type="button"
+              onClick={handleGoogleSignIn}
+              className="font-axiom group relative flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+              style={{
+                boxShadow: '0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25)',
+                backgroundImage: `url(${googleLogo})`,
+                backgroundPosition: '12px 11px',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: '18px 18px'
+              }}
+          >
+           <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+          <img src={googleLogo} alt="Google Logo" className="h-5 w-5" />
+        </span>
+            Sign in with Google
+          </button>
+        </div>
       </div>
       <hr />
 
@@ -167,6 +293,12 @@ function Login() {
             type="submit"
             className="font-axiom group relative flex w-full justify-center rounded-md border border
             border-transparent bg-medium py-2 px-4 text-sm font-medium text-slate-900 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            style={{
+              boxShadow: '0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25)',
+              backgroundPosition: '12px 11px',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: '18px 18px'
+            }}
           >
             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
               <LockClosedIcon
@@ -174,7 +306,7 @@ function Login() {
                 aria-hidden="true"
               />
             </span>
-            Start my fitness journey
+            Start your fitness journey
           </button>
         </Link>
       </div>
