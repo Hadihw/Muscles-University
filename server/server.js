@@ -1,43 +1,88 @@
-//Backend Authors: Jonathan Haddad 40111053, Saad Hanna  40113826
-
-const express = require("express");
-const { connectDB } = require("./config/connectDB.js");
-const userRouter = require("./routes/accountR");
-const cvRouter = require("./routes/cvR");
-const userPropertyRouter = require("./routes/userPropertyR");
-const connectionRoutes = require("./routes/connectionR");
-const feedRoutes = require("./routes/feedsR");
-const jobPostsRouter = require("./routes/jobPostsR");
-const messagesRouter = require("./routes/messagesR");
-const subscriptionRoutes = require('./routes/subscriptionRoutes');
 const dotenv = require("dotenv");
-const app = express();
-
-const bodyParser = require("body-parser");
+const express = require("express");
+const admin = require("firebase-admin");
+const https = require("https");
+const fs = require("fs");
+const cookieParser = require('cookie-parser');
+const socket = require('./config/socket');
 
 dotenv.config();
-connectDB();
 
-app.use(function (req, res, next) {
+// Initialize Firebase Admin SDK
+const serviceAccount = require("./firebase_admin_SDK.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+const firestore = admin.firestore();
+const messagesCollection = firestore.collection('messages');
+
+// Read the SSL certificate files
+const privateKey = fs.readFileSync("../config/development/server.key", "utf8");
+const certificate = fs.readFileSync("../config/development/server.cert", "utf8");
+const credentials = { key: privateKey, cert: certificate };
+
+const app = express();
+
+// Middleware to capture raw body or parse as JSON based on route
+app.use((req, res, next) => {
+  if (req.originalUrl.startsWith('/api/stripe/stripeWebhook')) {
+    req.rawBody = '';
+    req.on('data', (chunk) => {
+      req.rawBody += chunk;
+    });
+    req.on('end', next);
+  } else {
+    express.json()(req, res, next);
+  }
+});
+
+// Other Middleware
+app.use(cookieParser());
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Authorization");
   next();
 });
 
-// app.use(bodyParser.urlencoded({ extended: true }));
+// API Routes
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/auth/google', require('./routes/googleAuthRoutes'));
+app.use('/api/stripe', require('./routes/stripeRoutes'));
+app.use('/api/user', require('./routes/userRoutes'));
+app.use('/api/messages', require('./routes/messagesRoutes'));
+app.use('/api/subscription', require('./routes/subscriptionRoutes'));
 
-app.use(express.json());
+let server;
 
-app.use("/api/account", userRouter);
-app.use("/api/user/cv", cvRouter);
-app.use("/api/user/property", userPropertyRouter);
-app.use("/api/user/connection", connectionRoutes);
-app.use("/api/user/feed", feedRoutes);
-app.use("/api/user/jobPosts", jobPostsRouter);
-app.use("/api/messages", messagesRouter);
-app.use('/api/user/subscriptions', subscriptionRoutes);
+if (process.env.NODE_ENV === 'development') {
+  server = app.listen(process.env.PORT || 8080, () => {
+    console.log(`HTTP server listening on port ${process.env.PORT || 8080}!`);
+  });
+} else {
+  server = https.createServer(credentials, app);
+  server.listen(process.env.PORT || 8080, () => {
+    console.log(`HTTPS server listening on port ${process.env.PORT || 8080}!`);
+  });
+}
 
+// Initialize socket.io using the socket module
+const io = socket.init(server);
 
-app.listen(process.env.PORT || 8080, () =>
-  console.log(`App listening on port ${process.env.PORT}!`)
-);
+io.on('connection', (socket) => {
+  console.log('New client connected');
+
+  socket.on('join', (userId) => {
+    socket.join(userId);
+  });
+
+  messagesCollection.onSnapshot((snapshot) => {
+    const allMessages = snapshot.docs.map(doc => doc.data());
+    const sortedMessages = allMessages.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
+    socket.emit('messagesUpdate', sortedMessages);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('Client disconnected');
+  });
+});

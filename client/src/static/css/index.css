@@ -7,6 +7,19 @@
     src: url('../assets/fonts/Axiom.otf');
 }
 
+@layer components {
+    .right-shadow::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 10px;
+        height: 100%;
+        box-shadow: 8px 0 10px -5px rgba(0, 0, 0, 0.2);
+        z-index: -1;
+    }
+}
+
 html,
 body,
 #root,
@@ -22,6 +35,8 @@ body,
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+
 
 .active {
     background-color: #745228;

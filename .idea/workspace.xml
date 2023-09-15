@@ -1,14 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="378d2f8b-ea5b-4b3d-aac5-89db784db402" name="Changes" comment="intial">
+    <list default="true" id="378d2f8b-ea5b-4b3d-aac5-89db784db402" name="Changes" comment="stripe">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/Firebase/firebaseConfig.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/Redux/authSlice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/Redux/store.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Dashboard/Messages/Messages.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Dashboard/Nutrition/Nutrition.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Dashboard/SubscriptionPlan.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/UI/LoadingIndicator.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/development/server.cert" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/development/server.key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/firebase.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/jwt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/socket.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/config/stripe.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/controllers/authController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/controllers/googleAuthController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/controllers/messagesController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/controllers/notificationController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/controllers/stripeController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/controllers/userController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/firebase_admin_SDK.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/helpers/userHelper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/middleware/authJWT.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/middleware/rateLimiter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/middleware/rawBodyMiddleware.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/authRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/googleAuthRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/messagesRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/notificationRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/stripeRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/userRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.babelrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/images/63eabb9c07f2dc10446a1c7c.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/images/640bf25dd49186faa6e64c7a.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/images/640bff31d49186faa6e64c96.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/images/640ca33c992e8d2374d849aa.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/images/640d222db5cb71d9860dcff9.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/images/640d510147872af45c5a1e1a.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/images/avatar1.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/images/avatar2.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/images/avatar3.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/images/avatar4.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Camera/Camera.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Camera/Camera.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Camera/Camera.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/DashboardNavbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Dashboard/DashboardNavbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Register/Step2.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Register/Step2.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/Home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Dashboard/Home/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/Profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Dashboard/Profile/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/Workout/Workout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Dashboard/Workout/Workout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Register/Step1.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Register/registerForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Register/Step2.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Register/Step3.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/messages/Chat.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/messages/ChatFeed.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/messages/ChatHeader.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/messages/ChatItem.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/messages/Message.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/messages/MessageSender.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/shared/MyConnections.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Jobs.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Messages.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Network.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Notifications.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Profile.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Landing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/auth/Landing.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/auth/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/auth/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/routes/authRoutes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/authRoutes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/static/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/static/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/vite.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/client.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/config/connectDB.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/CVcoverLetterC.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/accountC.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/connectionC.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/feedsC.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/jobsPostsC.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/messagesC.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/subscriptionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/subscriptionController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/userPropertiesC.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/accountM.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/feedsM.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/jobPostM.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/jobsM.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/messagesM.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/subscriptionModel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/accountR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/connectionR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/cvR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/feedsR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/jobPostsR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/messagesR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/subscriptionRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/subscriptionRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/userPropertyR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tests/Authentication_v2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tests/Authentications.postman_collection.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tests/Authentications_v3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tests/newman/Authentications-2023-02-13-23-24-05-619-0.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tests/newman/Authentications-2023-02-13-23-27-24-975-0.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tests/newman/Authentications-2023-02-18-20-02-39-634-0.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/tests/newman/Authentications-2023-02-18-20-08-44-797-0.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,24 +124,21 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="branch1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="PackageJsonUpdateNotifier">
-    <dismissed value="$PROJECT_DIR$/client/package.json" />
   </component>
   <component name="ProjectId" id="2N6rxZvGHC8pu4VPG5QTWuuw85A" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -49,7 +152,9 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/HadiH/WebstormProjects/MU/client/assets/images&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.12.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.17.13&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HadiH/WebstormProjects/MU/server&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
@@ -58,15 +163,16 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\HadiH\WebstormProjects\MU\server" />
       <recent name="C:\Users\HadiH\WebstormProjects\MU\client\assets\images" />
       <recent name="C:\Users\HadiH\WebstormProjects\MU\client" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\HadiH\WebstormProjects\MU\client\src\components\Dashboard\Workout" />
-      <recent name="C:\Users\HadiH\WebstormProjects\MU\client\src\components\Dashboard\Profile" />
-      <recent name="C:\Users\HadiH\WebstormProjects\MU\client\src\components\Dashboard\Home" />
       <recent name="C:\Users\HadiH\WebstormProjects\MU\client\src\components\Dashboard" />
-      <recent name="C:\Users\HadiH\WebstormProjects\MU\client\assets\images" />
+      <recent name="C:\Users\HadiH\WebstormProjects\MU\server\controllers" />
+      <recent name="C:\Users\HadiH\WebstormProjects\MU\config\development" />
+      <recent name="C:\Users\HadiH\WebstormProjects\MU" />
+      <recent name="C:\Users\HadiH\WebstormProjects\MU\client" />
     </key>
   </component>
   <component name="RunManager">
@@ -147,7 +253,38 @@
       <workItem from="1692640926866" duration="9139000" />
       <workItem from="1692723394821" duration="2424000" />
       <workItem from="1692814065324" duration="13571000" />
-      <workItem from="1692910348092" duration="9925000" />
+      <workItem from="1692910348092" duration="9955000" />
+      <workItem from="1692984567948" duration="9214000" />
+      <workItem from="1693075144875" duration="25184000" />
+      <workItem from="1693158179292" duration="22355000" />
+      <workItem from="1693229874796" duration="26464000" />
+      <workItem from="1693278069465" duration="1919000" />
+      <workItem from="1693280006373" duration="545000" />
+      <workItem from="1693318954213" duration="2597000" />
+      <workItem from="1693322051188" duration="3285000" />
+      <workItem from="1693333906150" duration="8752000" />
+      <workItem from="1693347866609" duration="451000" />
+      <workItem from="1693348349774" duration="121000" />
+      <workItem from="1693348606998" duration="675000" />
+      <workItem from="1693349332889" duration="9524000" />
+      <workItem from="1693364919620" duration="1793000" />
+      <workItem from="1693420226578" duration="16201000" />
+      <workItem from="1693490220001" duration="38151000" />
+      <workItem from="1693579409637" duration="25656000" />
+      <workItem from="1693665022638" duration="26777000" />
+      <workItem from="1693764243121" duration="14800000" />
+      <workItem from="1693864194594" duration="8741000" />
+      <workItem from="1693932078181" duration="25683000" />
+      <workItem from="1694020046565" duration="16206000" />
+      <workItem from="1694096154065" duration="32808000" />
+      <workItem from="1694185569446" duration="39967000" />
+      <workItem from="1694270881757" duration="36164000" />
+      <workItem from="1694366733235" duration="11583000" />
+      <workItem from="1694457253442" duration="34303000" />
+      <workItem from="1694529799428" duration="21855000" />
+      <workItem from="1694612710961" duration="37181000" />
+      <workItem from="1694699684316" duration="29394000" />
+      <workItem from="1694787390998" duration="4295000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1692668118762</created>
@@ -163,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692848878307</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="intial">
+      <created>1692929348755</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692929348755</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,7 +318,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="firebase" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -183,6 +339,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial" />
     <MESSAGE value="intial" />
-    <option name="LAST_COMMIT_MESSAGE" value="intial" />
+    <MESSAGE value="google integrated" />
+    <MESSAGE value="stripe" />
+    <option name="LAST_COMMIT_MESSAGE" value="stripe" />
   </component>
 </project>

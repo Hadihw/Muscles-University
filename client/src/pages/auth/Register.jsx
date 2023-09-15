@@ -1,196 +1,106 @@
 import React, { useState } from "react";
-import {Link, useNavigate} from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import {LockClosedIcon} from "@heroicons/react/20/solid";
-import {TypeAnimation} from "react-type-animation";
-import Step1 from "../../components/Register/Step1";
-import Step2 from "../../components/Register/Step2";
-import Step3 from "../../components/Register/Step3";
-import { loadStripe } from '@stripe/stripe-js';
-import {Elements} from "@stripe/react-stripe-js";
-
-const stripePromise = loadStripe("pk_live_51IVcniFkOBi2l0oyOSgKsTGqBNnUCVbo2tWOIC9dVfbZV61xabkbAffwAM5KaXyKG0l2Vc8md3nXXssrARK7PsCz00Gr2SRIej");
+import { LockClosedIcon } from "@heroicons/react/20/solid";
+import { TypeAnimation } from "react-type-animation";
+import RegisterForm from "../../components/Register/RegisterForm";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import googleLogo from '../../../assets/images/googleLogo.png';
+import { useNavigate } from "react-router-dom";
 
 
 function Register() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [subscriptionPlan, setSubscriptionPlan] = useState("");
-  const [step, setStep] = useState(1);
-  const navigate = useNavigate();
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const navigate = useNavigate();
 
-    const register = async (paymentMethodId) => {
-        // Add code to handle the subscription plan selection and payment process
-        // Then, proceed with registration
-        await axios
-            .post("/api/account/register", {
-                firstName,
-                lastName,
-                email,
-                password,
-                subscriptionPlan,
-                paymentMethodId,
-            })
-            .then((res) => {
-                console.log("registered", res);
-                navigate("/login");
-            })
-            .catch((err) => console.log("Error", err));
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+
+    const handleGoogleRegister = async () => {
+        try {
+            provider.setCustomParameters({
+                'prompt': 'select_account'
+            });
+            const result = await signInWithPopup(auth, provider);
+            const idToken = await result.user.getIdToken();
+            const response = await axios.post('/api/auth/google/googleRegister', { idToken });
+            if (response.status === 200) {
+                navigate('/Dashboard/Home');
+                localStorage.setItem('userID',result.user.uid);
+                window.location.reload();
+            }
+        } catch (error) {
+            setErrorMessage('Error registering with Google. Please try again.');
+        }
     };
 
-  const goToNextStep = () => {
-    if (step < 3) setStep(step + 1);
-  };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post('/api/auth/register', { firstName, lastName, email, password, confirmPassword });
 
-  const goToPreviousStep = () => {
-    if (step > 1) setStep(step - 1);
-  };
+            if (response.status === 201) {
+                // Successful registration, so redirect to dashboard/home
+                localStorage.setItem('userID', response.data.uid);
+                navigate("/Dashboard/Home");
+                window.location.reload();
+            } else {
+                setErrorMessage("Unexpected response from the server.");
+            }
 
-  const renderStepContent = (step) => {
-    switch (step) {
-      case 1:
-          return (
-              <Step1
-                  firstName={firstName}
-                  setFirstName={setFirstName}
-                  lastName={lastName}
-                  setLastName={setLastName}
-                  email={email}
-                  setEmail={setEmail}
-                  password={password}
-                  setPassword={setPassword}
-                  confirmPassword={confirmPassword}
-                  setConfirmPassword={setConfirmPassword}
-              />
-          );
-        case 2:
-            return (
-                <Step2
-                    subscriptionPlan={subscriptionPlan}
-                    setSubscriptionPlan={setSubscriptionPlan}
-                />
-            );
-
-        case 3:
-            return (
-                <Elements stripe={stripePromise}>
-                    <Step3 register={register} />
-                </Elements>
-            );
-        default:
-            return <div></div>;
-    }};
+        } catch (err) {
+            if (err.response?.data?.error) {
+                setErrorMessage(err.response.data.error);
+            }
+        }
+    };
 
     return (
-        <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-            <div className="w-full flex-grow flex items-center justify-center">
+        <div className="flex bg-light h-screen justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div className="w-full flex-grow flex justify-center">
                 <div className="w-full">
-                    {step===1 && (
-                    <img
-                        className="mx-auto h-40 w-auto mb-10"
-                        src="../../assets/images/logo(500x500).png"
-                        alt="Muscles University"
-                    />)}
-
-                        {step===1 && (
-                            <h2 className="text-center text-4xl font-bold tracking-tight font-axiom text-dark sm:min-h-[80px]" data-testid="register-title">
-                        <TypeAnimation
-                            sequence={[
-                                'Register Now',
-                                2000,
-                                'Create an Account',
-                                2000
-                            ]}
-                            speed={50}
-                            className=""
-                            wrapper="span"
-                            repeat={Infinity}
-                        />
-                            </h2>)}
-                        {step===2 && (
-                            <h2 className="text-center text-4xl font-bold tracking-tight font-axiom text-dark sm:min-h-[80px]" data-testid="register-title">
-                            <TypeAnimation
-                                sequence={[
-                                    'Select a plan',
-                                    2000,
-                                    'Join the community',
-                                    2000
-                                ]}
-                                speed={50}
-                                className=""
-                                wrapper="span"
-                                repeat={Infinity}
-                            />
-                            </h2>)}
-
-                <form
-                    className="mt-8 space-y-6"
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                        if (step === 3) {
-                            register();
-                        } else {
-                            goToNextStep();
-                        }
-                    }}
-                >
-                    {renderStepContent(step)}
-                    <div className="lg:w-1/4 m-auto space-y-4">
-                    {step > 1 && (
-                        <button
-                            type="button"
-                            className="m-auto bg-gray-200 text-gray-700 py-2 px-4 rounded"
-                            onClick={goToPreviousStep}
-                        >
-                            Back
-                        </button>
-                    )}
-
-                        {step === 1 ? (
-                    <button
-                        type="submit"
-                        className=" m-auto font-axiom group relative flex w-full justify-center rounded-md border border-transparent bg-dark py-2 px-4 text-sm font-medium text-white hover:bg-dark-500 focus:outline-none focus:ring-2 focus:ring-dark-500 focus:ring-offset-2"
-                    >
-                        Register
-
-                    </button>
-                        ) : (step === 2 ? (
-                            <button
-                                type="submit"
-                                className=" m-auto font-axiom group relative flex w-full justify-center rounded-md border border-transparent bg-dark py-2 px-4 text-sm font-medium text-white hover:bg-dark-500 focus:outline-none focus:ring-2 focus:ring-dark-500 focus:ring-offset-2"
-                            >
-                                Next
-
-                            </button>) : (""))}
-
-                        {step === 1 && (
-                            <hr/>)}
-
-                        {step === 1 && (
-                    <div>
-                        <Link to="/login">
-                            <button
-                                type="submit"
-                                className="font-axiom group relative flex w-full justify-center rounded-md border border-transparent bg-medium py-2 px-4 text-sm font-medium text-slate-900 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-dark-500 focus:ring-offset-2"
-                            >
-            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-              <LockClosedIcon
-                  className="h-5 w-5 text-dark-500 group-hover:text-dark-400"
-                  aria-hidden="true"
-              />
-            </span>
-                                Have an account? Login
+                    <img className="mx-auto h-40 w-auto mb-10" src="../../assets/images/logo(500x500).png" alt="Muscles University" />
+                    <h2 className="text-center text-4xl font-bold tracking-tight font-axiom text-dark">
+                        <TypeAnimation sequence={['Register Now', 2000, 'Create an Account', 2000]} speed={50} className="" wrapper="span" repeat={Infinity} />
+                    </h2>
+                    <form className="mt-8 space-y-6" onSubmit={(e) => handleSubmit(e)}>
+                        <div className="flex flex-col justify-center items-center container-width-class">
+                            {errorMessage && (
+                                <div className="w-1/4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                                    {errorMessage}
+                                </div>
+                            )}
+                            <RegisterForm firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} email={email} setEmail={setEmail} password={password} setPassword={setPassword} confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword} />
+                        </div>
+                        <div className="lg:w-1/4 m-auto space-y-4">
+                            <button type="submit" className="m-auto font-axiom group relative flex w-full justify-center rounded-md border border-transparent bg-dark py-2 px-4 text-sm font-medium text-white hover:bg-dark-500 focus:outline-none focus:ring-2 focus:ring-dark-500 focus:ring-offset-2">
+                                Register
                             </button>
-                        </Link>
-
-                    </div>
-                        )}
-                    </div>
-                </form>
-            </div>
+                            <button onClick={handleGoogleRegister} className="mt-4 m-auto font-axiom group relative flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                  <img src={googleLogo} alt="Google Logo" className="h-5 w-5" />
+                </span>
+                                Register with Google
+                            </button>
+                            <hr />
+                            <div>
+                                <Link to="/login">
+                                    <button type="submit" className="font-axiom group relative flex w-full justify-center rounded-md border border-transparent bg-medium py-2 px-4 text-sm font-medium text-slate-900 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-dark-500 focus:ring-offset-2">
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                      <LockClosedIcon className="h-5 w-5 text-dark-500 group-hover:text-dark-400" aria-hidden="true" />
+                    </span>
+                                        Have an account? Login
+                                    </button>
+                                </Link>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );
