@@ -139,7 +139,7 @@ const isValidUserData = (userData) => {
 
 async function getAllTrainers(req, res) {
 	try {
-		const snapshot = await usersCollection.where('gender', '==', 'Male').get();
+		const snapshot = await usersCollection.where('userRole', '==', 'trainer').get();
 		const trainers = [];
 
 		snapshot.forEach(doc => {

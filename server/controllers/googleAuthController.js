@@ -43,7 +43,6 @@ const googleLogin = async (req, res) => {
 			return res.status(400).json({ message: "User does not exist. Please register first!" });
 		}
 
-		// Issue JWTs for Google Login
 		const role = "user";  // Default role
 		const accessToken = jwt.sign({ id: decodedToken.uid, email: decodedToken.email, role }, JWT_SECRET_KEY, {
 			expiresIn: '1h'
@@ -59,7 +58,8 @@ const googleLogin = async (req, res) => {
 		});
 		res.cookie('refreshToken', refreshToken, {
 			httpOnly: true,
-		});
+		});// Issue JWTs for Google Login
+
 
 		res.status(200).json({ accessToken, refreshToken, message: "User logged in with Google", uid: decodedToken.uid });
 
@@ -110,6 +110,7 @@ const googleRegister = async (req, res) => {
 				profilePic: decodedToken.picture,
 				firstName,
 				lastName,
+				userRole: "client",
 				age: null,
 				calories: null,
 				currentWeight: null,
@@ -134,26 +135,7 @@ const googleRegister = async (req, res) => {
 			await userRef.set(userData);
 		}
 
-		// Issue JWTs for Google Registration
-		const role = "user";  // Default role
-		const accessToken = jwt.sign({ id: decodedToken.uid, email: decodedToken.email, role }, JWT_SECRET_KEY, {
-			expiresIn: '1h'
-		});
-
-		const refreshToken = jwt.sign({ id: decodedToken.uid, email: decodedToken.email }, JWT_REFRESH_SECRET_KEY, {
-			expiresIn: '7d'
-		});
-
-		// Set the JWTs as cookies
-		res.cookie('accessToken', accessToken, {
-			httpOnly: true,
-		});
-		res.cookie('refreshToken', refreshToken, {
-			httpOnly: true,
-		});
-
-
-		res.status(200).json({ message: "User registered with Google", uid: decodedToken.uid });
+		res.status(200).json({ message: "User registered with Google"});
 
 	} catch (error) {
 		console.error("Error verifying ID token:", error);

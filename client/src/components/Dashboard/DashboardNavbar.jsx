@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
-import {Link, NavLink, useNavigate} from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import {
 	FaHome, FaRunning, FaUserCircle, FaCommentAlt,
-	FaApple, FaCalendarAlt, FaSignOutAlt, FaBars, FaLock, FaCog
+	FaApple, FaCalendarAlt, FaSignOutAlt, FaBars, FaLock, FaCog, FaUsers, FaDumbbell
 } from 'react-icons/fa';
 import axios from "axios";
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setLoggedOut } from "../../Redux/authSlice";
-
-
+import withRole from "../HOC/withRole";
 
 const DashboardNavbar = ({ userData }) => {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const subscriptionType = userData.subscription.type
+	const isTrainer = userData.userRole === 'trainer'; // Assuming userType is a field in userData
+	const isGoldOrPlatinum = userData.subscription.type === 'gold' || userData.subscription.type === 'platinum';
 
-	const isGoldOrPlatinum = ["gold", "platinum"].includes(subscriptionType);
 
 	const logout = async () => {
 		try {
@@ -44,7 +43,7 @@ const DashboardNavbar = ({ userData }) => {
 					</Link>
 
 					<div className="w-full flex flex-col items-center space-y-4 flex-grow">
-						<NavLink to="/Dashboard/Home"  activeClassName="bg-dark text-white px-4 py-2 rounded-md" className="w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start">
+						<NavLink to="/Dashboard/Home" activeClassName="bg-dark text-white px-4 py-2 rounded-md" className="w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start">
 							<FaHome className="w-8 h-8" />
 							<span className="lg:inline hidden ml-4">Home</span>
 						</NavLink>
@@ -54,61 +53,60 @@ const DashboardNavbar = ({ userData }) => {
 							<span className="lg:inline hidden ml-4">Profile</span>
 						</NavLink>
 
-						<NavLink to="/Dashboard/Messages" activeClassName="bg-dark text-white px-4 py-2 rounded-md" className="w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start">
-							<FaCommentAlt className="w-8 h-8" />
-							<span className="lg:inline hidden ml-4">Messages</span>
-						</NavLink>
-
-						{
-							isGoldOrPlatinum ?
-								<NavLink
-									to="/Dashboard/Nutrition"
-									activeClassName="bg-dark text-white px-4 py-2 rounded-md"
-									className="w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start"
-								>
-									<FaApple className="w-8 h-8" />
-									<span className="lg:inline hidden ml-4">
-            Nutrition
-        </span>
+						{isTrainer ? (
+							<>
+								<NavLink to="/Dashboard/Clients" activeClassName="bg-dark text-white px-4 py-2 rounded-md" className="w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start">
+									<FaUsers className="w-8 h-8" />
+									<span className="lg:inline hidden ml-4">Clients</span>
 								</NavLink>
-								:
-								<Link
-									to="#"
-									className="w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start opacity-50 cursor-not-allowed"
-								>
+
+								<NavLink to="/Dashboard/AssignWorkouts" activeClassName="bg-dark text-white px-4 py-2 rounded-md" className="w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start">
+									<FaDumbbell className="w-8 h-8" />
+									<span className="lg:inline hidden ml-4">Assign Workouts</span>
+								</NavLink>
+							</>
+						) : (
+							<>
+								<NavLink to="/Dashboard/Messages" activeClassName="bg-dark text-white px-4 py-2 rounded-md" className="w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start">
+									<FaCommentAlt className="w-8 h-8" />
+									<span className="lg:inline hidden ml-4">Messages</span>
+								</NavLink>
+
+								<NavLink to="/Dashboard/Nutrition" activeClassName="bg-dark text-white px-4 py-2 rounded-md" className="w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start">
 									<FaApple className="w-8 h-8" />
 									<div className="flex flex-grow justify-between items-center ml-4">
 										<span className="lg:inline hidden">Nutrition</span>
-										<FaLock className="lg:inline hidden" />
+										{!isGoldOrPlatinum && <FaLock className="lg:inline hidden" />}
 									</div>
-								</Link>
-						}
+								</NavLink>
 
-						<NavLink to="/Dashboard/Workout" activeClassName="bg-dark text-white px-4 py-2 rounded-md" className="w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start">
-							<FaRunning className="w-8 h-8" />
-							<span className="lg:inline hidden ml-4">Workout</span>
-						</NavLink>
+								<NavLink to="/Dashboard/Workout" activeClassName="bg-dark text-white px-4 py-2 rounded-md" className="w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start">
+									<FaRunning className="w-8 h-8" />
+									<span className="lg:inline hidden ml-4">Workout</span>
+								</NavLink>
 
-						<NavLink to="/Dashboard/Bookings" activeClassName="bg-dark text-white px-4 py-2 rounded-md" className="w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start">
-							<FaCalendarAlt className="w-8 h-8" />
-							<span className="lg:inline hidden ml-4">Bookings</span>
-						</NavLink>
+								<NavLink to="/Dashboard/Bookings" activeClassName="bg-dark text-white px-4 py-2 rounded-md" className="w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start">
+									<FaCalendarAlt className="w-8 h-8" />
+									<span className="lg:inline hidden ml-4">Bookings</span>
+								</NavLink>
+							</>
+						)}
 					</div>
 
 					{/* Divider */}
 					<div className="w-4/5 h-[1px] bg-gray-300 my-4 mx-auto"></div>
 
-					{/* Settings */}
-					<NavLink to="/Dashboard/Settings" activeClassName="bg-dark text-white px-4 py-2 rounded-md" className="w-full px-4 py-2 flex items-center space-x-2 hover:bg-gray-200 transition-all duration-200 rounded-md">
-						<FaCog className="w-8 h-8" />
-						<span className="lg:inline hidden">Settings</span>
-					</NavLink>
+					<div className="w-full flex flex-col items-center space-y-4 mb-4">
+						<NavLink to="/Dashboard/Settings" activeClassName="bg-indigo-600 text-white px-4 py-2 rounded-md" className="w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start hover:bg-indigo-500 transition duration-200">
+							<FaCog className="w-8 h-8" />
+							<span className="lg:inline hidden ml-4">Settings</span>
+						</NavLink>
 
-					{/* Logout */}
-					<button onClick={logout} className="w-full px-4 py-2 flex items-center space-x-2 border-transparent hover:text-dark hover:bg-gray-200 transition-all duration-200 rounded-md">
-						<FaSignOutAlt className="w-8 h-8" />
-						<span className="lg:inline hidden">Logout</span>
-					</button>
+						<button onClick={logout} className="w-full px-4 py-2 rounded-md flex items-center justify-center space-x-2 border-transparent hover:text-dark hover:bg-red-200 transition duration-200">
+							<FaSignOutAlt className="w-8 h-8" />
+							<span className="lg:inline hidden">Logout</span>
+						</button>
+					</div>
 				</div>
 			</nav>
 		</div>
@@ -116,5 +114,3 @@ const DashboardNavbar = ({ userData }) => {
 };
 
 export default DashboardNavbar;
-
-

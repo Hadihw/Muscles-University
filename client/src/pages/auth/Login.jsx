@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
-import { Link, Router, useNavigate } from "react-router-dom";
+import {Link, Router, useLocation, useNavigate} from "react-router-dom";
 import { Helmet } from "react-helmet";
 import axios from "axios";
 import { TypeAnimation } from 'react-type-animation';
@@ -36,12 +36,14 @@ axiosInstance.interceptors.response.use((response) => {
 
 
 function Login() {
+    const location = useLocation();
   const [password, setPass] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(location.state?.email || "");
   const [errorMessage, setErrorMessage] = useState(""); // Add this line
   const navigate = useNavigate();
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
+
 
     const handleGoogleSignIn = async () => {
         try {
@@ -96,7 +98,6 @@ function Login() {
                     // Store the user ID in local storage
                     localStorage.setItem('userID', res.data.uid);
                     // Navigate to Dashboard
-                    navigate("/Dashboard/Home");
                     window.location.reload();
                 })
                 .catch((err) => {
@@ -173,6 +174,11 @@ function Login() {
         <span className="block sm:inline">{errorMessage}</span>
       </div>
     )}
+          {location.state?.registrationSuccess && (
+              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                  Registration successful!
+              </div>
+          )}
     <form
       className="mt-8 space-y-6"
       action="#"

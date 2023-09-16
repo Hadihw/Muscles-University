@@ -30,9 +30,11 @@ function Register() {
             const idToken = await result.user.getIdToken();
             const response = await axios.post('/api/auth/google/googleRegister', { idToken });
             if (response.status === 200) {
-                navigate('/Dashboard/Home');
-                localStorage.setItem('userID',result.user.uid);
-                window.location.reload();
+                navigate("/Login", {
+                    state: {
+                        registrationSuccess: true
+                    }
+                });
             }
         } catch (error) {
             setErrorMessage('Error registering with Google. Please try again.');
@@ -46,9 +48,12 @@ function Register() {
 
             if (response.status === 201) {
                 // Successful registration, so redirect to dashboard/home
-                localStorage.setItem('userID', response.data.uid);
-                navigate("/Dashboard/Home");
-                window.location.reload();
+                navigate("/Login", {
+                    state: {
+                        email: email,
+                        registrationSuccess: true
+                    }
+                });
             } else {
                 setErrorMessage("Unexpected response from the server.");
             }
