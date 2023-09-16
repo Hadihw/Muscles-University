@@ -93,10 +93,10 @@ const Home = ({ userData = {} }) => {
 const Header = ({ greeting, userData, subscriptionDaysLeft, isSubscribed, goToSubscription }) => (
 	<div className="flex items-center justify-between mb-10">
 		<div>
-			<h2 className="text-2xl text-dark mb-2">{greeting}</h2>
-			<h1 className="text-5xl font-bold text-dark mb-4">{userData.firstName}</h1>
+			<h2 className="text-xl sm:text-2xl text-dark mb-2">{greeting}</h2>
+			<h1 className="text-3xl sm:text-5xl font-bold text-dark mb-4">{userData.firstName}</h1>
 		</div>
-		<button className="bg-dark text-white py-2 px-6 rounded-lg shadow-md hover:bg-dark active:bg-dark transition-colors duration-300"
+		<button className="bg-dark text-white py-1 sm:py-2 px-4 sm:px-6 rounded-lg shadow-md hover:bg-dark active:bg-dark transition-colors duration-300"
 				onClick={isSubscribed ? null : goToSubscription}>
 			{isSubscribed ? `${subscriptionDaysLeft} days left on subscription` : "Upgrade Subscription"}
 		</button>
@@ -121,16 +121,16 @@ const UserProfile = ({ userData }) => {
 			color = "text-text";
 	}
 	return (
-		<div className="flex bg-white rounded-lg shadow-md p-6 mb-8">
+		<div className="flex flex-col sm:flex-row bg-white rounded-lg shadow-md p-6 mb-8">
 			<img
 				src={userData.profilePic || 'https://via.placeholder.com/100'}
 				alt="Profile"
-				className="rounded-full w-24 h-24 border-4 border-dark"
+				className="rounded-full w-24 h-24 border-4 border-dark mb-4 sm:mb-0 sm:mr-8"
 			/>
-			<div className="ml-8">
-				<h2 className="text-3xl font-semibold text-dark">{userData.firstName} {userData.lastName}</h2>
-				<p className={`text-lg mt-4`}>
-					Subscription: <span className="font-medium ${color}">{userData.subscription?.type || '-'}</span>
+			<div>
+				<h2 className="text-2xl font-semibold text-dark">{userData.firstName} {userData.lastName}</h2>
+				<p className="text-lg mt-4">
+					Subscription: <span className={`font-medium ${color}`}>{userData.subscription?.type || '-'}</span>
 				</p>
 			</div>
 		</div>
@@ -138,7 +138,7 @@ const UserProfile = ({ userData }) => {
 };
 
 const ActivitySection = () => (
-	<div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+	<div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-6">
 		<ActivityCard icon={<FaHeartbeat />} title="Heart Rate" description="Monitor your heart rate during workouts." />
 		<ActivityCard icon={<FaDumbbell />} title="Workouts" description="Track your daily workout routines." />
 		<ActivityCard icon={<FaBox />} title="Equipment" description="Manage your fitness equipment." />
@@ -157,5 +157,6 @@ const ActivityCard = ({ icon, title, description }) => (
 		<p className="text-text">{description}</p>
 	</div>
 );
+
 
 export default Home;

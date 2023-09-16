@@ -50,11 +50,13 @@ const registerUser = async (req, res) => {
 		const userCredential = await admin.auth().createUser({ email, password });
 		uid = userCredential.uid;
 
+
 		const userData = {
 			uid,
 			email,
 			firstName,
 			lastName,
+			userRole: "client",
 			age:null,
 			calories:null,
 			currentWeight:null,
@@ -82,18 +84,7 @@ const registerUser = async (req, res) => {
 		const userRef = usersCollection.doc(uid);
 		await userRef.set(userData);
 
-
-		const accessToken = jwt.sign({ id: uid, email, role: "user" }, JWT_SECRET_KEY, {
-			expiresIn: '1h'
-		});
-
-		const refreshToken = jwt.sign({ id: uid, email }, JWT_REFRESH_SECRET_KEY, {
-			expiresIn: '7d'
-		});
-
-		res.cookie('accessToken', accessToken, { httpOnly: true });
-		res.cookie('refreshToken', refreshToken, { httpOnly: true });
-		res.status(201).json({ message: 'User registered', uid, accessToken, refreshToken });
+		res.status(201).json({ message: 'User Successfully registered'});
 
 	} catch (error) {
 		console.log('Error creating user:', error);

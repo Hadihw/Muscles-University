@@ -84,7 +84,13 @@ const Profile = ({ userData }) => {
 			}, 3000);
 		} else {
 			console.error("Failed to update user.");
-			// Here, you might want to add additional logic to handle the error, for instance, reverting the Firestore update.
+			// Display the error toast
+			setShowToast(true);
+			setToastOpacity(1);
+			setTimeout(() => {
+				setToastOpacity(0);
+				setTimeout(() => setShowToast(false), 300);
+			}, 3000);
 		}
 	};
 	const handleImageConfirm = (image) => {
@@ -110,7 +116,7 @@ const Profile = ({ userData }) => {
 	}
 
 	return (
-		<div className="h-full w-full p-8 bg-background">
+		<div className="h-full w-full p-2 sm:p-4 md:p-6 lg:p-8 bg-background overflow-auto">
 			<ToastNotification showToast={showToast} toastOpacity={toastOpacity} />
 			<ProfileHeader
 				user={user}
@@ -152,13 +158,13 @@ const Profile = ({ userData }) => {
 	);
 };
 
-const ToastNotification = ({ showToast, toastOpacity }) => (
+const ToastNotification = ({ showToast, toastOpacity, type = "success" }) => (
 	showToast && (
 		<div
-			className={`toast-notification bg-green-600 text-white fixed top-5 left-1/2 transform -translate-x-1/2 py-2 px-5 rounded-lg shadow-lg z-50 transition-opacity duration-300 ease-out border border-green-700`}
+			className={`toast-notification ${type === "success" ? "bg-green-600" : "bg-red-600"} text-white fixed top-5 left-1/2 transform -translate-x-1/2 py-2 px-5 rounded-lg shadow-lg z-50 transition-opacity duration-300 border ${type === "success" ? "border-green-700" : "border-red-700"}`}
 			style={{ opacity: toastOpacity }}
 		>
-			Profile updated successfully!
+			{type === "success" ? "Profile updated successfully!" : "Error updating profile."}
 		</div>
 	)
 );
@@ -245,7 +251,7 @@ const ImageCropModal = ({ isOpen, onClose, onConfirm }) => {
 };
 
 const ProfileHeader = ({ user, isEditing, setIsImageModalOpen, setIsEditing, tempProfilePic, setIsConfirmModalOpen }) => (
-	<div className="bg-white rounded-lg shadow-lg p-8 mb-8 flex items-center space-x-4">
+	<div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 lg:p-8 mb-4 flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
 		<div className="relative rounded-full w-32 h-32">
 			<img
 				src={tempProfilePic || user.profilePic || 'https://via.placeholder.com/100'}
@@ -281,7 +287,7 @@ const ProfileHeader = ({ user, isEditing, setIsImageModalOpen, setIsEditing, tem
 );
 
 const ProfileDetails = ({ user, handleChange, isEditing }) => (
-	<div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-8">
+	<div className="flex flex-col space-y-4 lg:space-y-0 lg:space-x-4">
 		<ProfileCategory title="Personal Details" icon={FaUser}>
 			<DropdownInput label="Gender" value={user.gender} onChange={handleChange('gender')} isEditing={isEditing} options={['Male', 'Female', 'Non-Binary', 'Prefer not to say']} />
 			<ProfileInput label="Age" value={user.age} onChange={handleChange('age')} isEditing={isEditing} unit="years" />

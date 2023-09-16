@@ -7,6 +7,7 @@ import SubscriptionPlans from "../components/Dashboard/SubscriptionPlan";
 import {useDispatch} from "react-redux";
 import {setNotSubscribed, setSubscribed} from "../Redux/authSlice";
 import Nutrition from "../components/Dashboard/Nutrition/Nutrition";
+import withRole from "../components/HOC/withRole";
 
 
 const Home = lazy(() => import('../components/Dashboard/Home/Home'));
@@ -31,6 +32,9 @@ const Dashboard = () => {
     const userID = localStorage.getItem('userID');
     const [userData, setUserData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+
+    //MIDDLEWARE FOR NUTRITION
+    const NutritionTab = withRole(Nutrition, ['gold', 'platinum']);
 
 
     useEffect(() => {
@@ -86,7 +90,7 @@ const Dashboard = () => {
                                             <Route path="/Dashboard/Profile" element={<Profile userData={userData}/>} />
                                             <Route path="/Dashboard/Workout" element={<Workout/>} />
                                             <Route path="/Dashboard/Messages" element={<Messages userData={userData}/>} />
-                                            <Route path="/Dashboard/Nutrition" element={<Nutrition/>} />
+                                            <Route path="/Dashboard/Nutrition" element={<NutritionTab userData={userData}/>} />
                                             <Route path="/Dashboard/SubscriptionPlans" element={<SubscriptionPlans />} />
                                             <Route path="/Dashboard" element={<RedirectToHome />} />
                                             <Route path="*" element={<RedirectToHome />} />

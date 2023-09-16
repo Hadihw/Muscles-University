@@ -47,20 +47,6 @@ async function updateSubscription(req, res) {
 	}
 }
 
-function canAccessFeatures(userSubscription) {
-	if (userSubscription.type === 'Free') {
-		return false; // Only has access to free features
-	}
-
-	const currentDate = new Date();
-	if (userSubscription.endDate && userSubscription.endDate > currentDate) {
-		return true; // Has access to premium features until endDate
-	}
-
-	return false; // No longer has access to premium features
-}
-
 module.exports = {
-	updateSubscription,
-	canAccessFeatures
+	updateSubscription
 };

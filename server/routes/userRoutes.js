@@ -24,4 +24,6 @@ router.get("/getAllTrainers", authJWT, userC.getAllTrainers);
 
 router.get("/fetchUserById", authJWT, userC.fetchUserById);
 
+router.get("/getAllUsers", authJWT,userC.getAllUsers);
+
 module.exports = router;
