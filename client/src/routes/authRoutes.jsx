@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
-import Login from "../pages/auth/Login";
-import Register from "../pages/auth/Register";
+import Login from "../pages/PreAuth/Login";
+import Register from "../pages/PreAuth/Register";
 
 function RedirectToLogin() {
     const navigate = useNavigate();

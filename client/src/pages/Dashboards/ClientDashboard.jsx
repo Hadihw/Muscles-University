@@ -1,32 +1,32 @@
 import React, {lazy, Suspense, useEffect, useState} from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import DashboardNavbar from '../components/Dashboard/DashboardNavbar';
+import ClientNavbar from '../../components/Client/ClientNavbar';
 import axios from "axios";
-import LoadingIndicator from "../components/UI/LoadingIndicator";
-import SubscriptionPlans from "../components/Dashboard/SubscriptionPlan";
+import LoadingIndicator from "../../components/UI/LoadingIndicator";
+import SubscriptionPlans from "../../components/Client/SubscriptionPlan";
 import {useDispatch} from "react-redux";
-import {setNotSubscribed, setSubscribed} from "../Redux/authSlice";
-import Nutrition from "../components/Dashboard/Nutrition/Nutrition";
-import withRole from "../components/HOC/withRole";
+import {setNotSubscribed, setSubscribed} from "../../Redux/authSlice";
+import Nutrition from "../../components/Client/Nutrition/Nutrition";
+import withRole from "../../components/HOC/withRole";
 
 
-const Home = lazy(() => import('../components/Dashboard/Home/Home'));
-const Profile = lazy(() => import('../components/Dashboard/Profile/Profile'));
-const Workout = lazy(() => import('../components/Dashboard/Workout/Workout'));
-const Messages= lazy(() => import('../components/Dashboard/Messages/Messages'));
+const Home = lazy(() => import('../../components/Client/Home/Home'));
+const Profile = lazy(() => import('../../components/Client/Profile/Profile'));
+const Workout = lazy(() => import('../../components/Client/Workout/Workout'));
+const Messages= lazy(() => import('../../components/Client/Messages/Messages'));
 
 
 function RedirectToHome() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        navigate('/Dashboard/Home');
+        navigate('/ClientDashboard/Home');
     }, [navigate]);
 
     return null;
 }
 
-const Dashboard = () => {
+const ClientDashboard = () => {
 
     const dispatch = useDispatch();
     const userID = localStorage.getItem('userID');
@@ -39,7 +39,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         // Fetch user data
-        axios.get(`/api/user/getUser/${userID}`)
+        axios.get(`/api/user/users/${userID}`)
             .then(response => {
                 const user = response.data;
                 setUserData(user);
@@ -72,10 +72,10 @@ const Dashboard = () => {
     }
 
     return (
-                <div className="h-screen w-full flex bg-gray-200 overflow-hidden">
+                <div className="h-screen w-screen flex bg-gray-200 overflow-hidden">
                     <div className="rounded-lg shadow-lg flex-grow flex">
                         <div className="border-r border-gray-300">
-                            <DashboardNavbar userData={userData} />
+                            <ClientNavbar userData={userData} />
                         </div>
                         <div className="flex-1 h-full overflow-hidden">
                             <div className="bg-manatee rounded-lg shadow-lg h-full">
@@ -86,13 +86,13 @@ const Dashboard = () => {
                                         </div>
                                     }>
                                         <Routes>
-                                            <Route path="/Dashboard/Home" element={<Home  userData={userData}/>} />
-                                            <Route path="/Dashboard/Profile" element={<Profile userData={userData}/>} />
-                                            <Route path="/Dashboard/Workout" element={<Workout/>} />
-                                            <Route path="/Dashboard/Messages" element={<Messages userData={userData}/>} />
-                                            <Route path="/Dashboard/Nutrition" element={<NutritionTab userData={userData}/>} />
-                                            <Route path="/Dashboard/SubscriptionPlans" element={<SubscriptionPlans />} />
-                                            <Route path="/Dashboard" element={<RedirectToHome />} />
+                                            <Route path="/ClientDashboard/Home" element={<Home  userData={userData}/>} />
+                                            <Route path="/ClientDashboard/Profile" element={<Profile userData={userData}/>} />
+                                            <Route path="/ClientDashboard/Workout" element={<Workout/>} />
+                                            <Route path="/ClientDashboard/Messages" element={<Messages userData={userData}/>} />
+                                            <Route path="/ClientDashboard/Nutrition" element={<NutritionTab userData={userData}/>} />
+                                            <Route path="/ClientDashboard/SubscriptionPlans" element={<SubscriptionPlans />} />
+                                            <Route path="/ClientDashboard" element={<RedirectToHome />} />
                                             <Route path="*" element={<RedirectToHome />} />
                                         </Routes>
                                     </Suspense>
@@ -103,4 +103,4 @@ const Dashboard = () => {
                 </div>
             )};
 
-export default Dashboard;
+export default ClientDashboard;

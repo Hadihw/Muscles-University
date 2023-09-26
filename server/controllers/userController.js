@@ -1,5 +1,18 @@
 const { usersCollection } = require('../config/firebase');
 
+
+
+// Fetch a user by ID from Firestore
+async function fetchUserById(id) {
+	const userRef = usersCollection.doc(id);
+	const doc = await userRef.get();
+
+	if (!doc.exists) {
+		return null;
+	}
+	return doc.data();
+}
+
 // Fetch a user by email
 async function getUserByEmail(email) {
 	const snapshot = await usersCollection.where('email', '==', email).get();
@@ -26,16 +39,6 @@ async function getAllUsers(req, res) {
 	}
 }
 
-// Fetch a user by ID from Firestore
-async function fetchUserById(id) {
-	const userRef = usersCollection.doc(id);
-	const doc = await userRef.get();
-
-	if (!doc.exists) {
-		return null;
-	}
-	return doc.data();
-}
 
 async function getUserById(req, res) {
 	const { id } = req.params;
@@ -51,40 +54,68 @@ async function getUserById(req, res) {
 // Update user details by ID
 async function updateUser(req, res) {
 	const { id } = req.params;
+	const { userRole } = req.body;
+
+	// Common fields for both roles
 	const {
 		firstName,
 		lastName,
-		age,
-		calories,
-		currentWeight,
-		dailyActivities,
-		fat,
-		carbs,
-		fitnessGoal,
-		gender,
-		goalWeight,
-		height,
-		protein,
-		workoutLocation
 	} = req.body;
 
+	let updateData = { firstName, lastName };
+
+	// Fields specific to client
+	if (userRole === 'client') {
+		const {
+			age,
+			calories,
+			currentWeight,
+			dailyActivities,
+			fat,
+			carbs,
+			fitnessGoal,
+			gender,
+			goalWeight,
+			height,
+			protein,
+			workoutLocation
+		} = req.body;
+		updateData = {
+			...updateData,
+			age,
+			calories,
+			currentWeight,
+			dailyActivities,
+			fat,
+			carbs,
+			fitnessGoal,
+			gender,
+			goalWeight,
+			height,
+			protein,
+			workoutLocation
+		};
+	}
+
+	// Fields specific to trainer
+	else if (userRole === 'trainer') {
+		const {
+			certifications,
+			specialization,
+			yearsOfExperience,
+			availability
+		} = req.body;
+		updateData = {
+			...updateData,
+			certifications,
+			specialization,
+			yearsOfExperience,
+			availability
+		};
+	}
+
 	const userRef = usersCollection.doc(id);
-	await userRef.update({
-		firstName,
-		lastName,
-		age,
-		calories,
-		currentWeight,
-		dailyActivities,
-		fat,
-		carbs,
-		fitnessGoal,
-		gender,
-		goalWeight,
-		height,
-		protein,
-		workoutLocation
-	});
+	await userRef.update(updateData);
 
 	const updatedDoc = await userRef.get();
 	if (!updatedDoc.exists) {
@@ -153,6 +184,51 @@ async function getAllTrainers(req, res) {
 	}
 }
 
+async function getAllClients(req, res) {
+	try {
+		const snapshot = await usersCollection.where('userRole', '==', 'client').get();
+		const clients = [];
+
+		snapshot.forEach(doc => {
+			clients.push({ id: doc.id, ...doc.data() });
+		});
+
+		res.json(clients);
+	} catch (error) {
+		console.error("Error fetching all clients:", error);
+		res.status(500).send("Error fetching all clients");
+	}
+}
+
+const listAllClientsForTrainer = async (req, res) => {
+	const { trainerId } = req.params;
+	try {
+		const trainerDoc = await usersCollection.doc(trainerId).get();
+		const trainerData = trainerDoc.data();
+		const clientIds = trainerData.assignedClients;
+
+		// Check if clientIds is null, undefined, or empty
+		if (!clientIds || clientIds.length === 0) {
+			return res.status(200).json({ message: 'No clients assigned to this trainer.' });
+		}
+
+		const clientDocs = await usersCollection.where('userRole', '==', 'client').where('uid', 'in', clientIds).get();
+
+		const clients = [];
+		clientDocs.forEach(doc => {
+			const clientData = doc.data();
+			clientData.trainerName = `${trainerData.firstName} ${trainerData.lastName}`;
+			clients.push(clientData);
+		});
+
+		res.status(200).json(clients);
+	} catch (error) {
+		res.status(500).json({ message: 'Failed to fetch clients for trainer.', error: error.message });
+	}
+};
+
+
+
 module.exports = {
 	getUserByEmail,
 	getAllUsers,
@@ -161,5 +237,7 @@ module.exports = {
 	checkEmailExists,
 	isValidUserData,
 	getAllTrainers,
-	fetchUserById
+	getAllClients,
+	fetchUserById,
+	listAllClientsForTrainer
 };

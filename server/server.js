@@ -52,6 +52,7 @@ app.use('/api/stripe', require('./routes/stripeRoutes'));
 app.use('/api/user', require('./routes/userRoutes'));
 app.use('/api/messages', require('./routes/messagesRoutes'));
 app.use('/api/subscription', require('./routes/subscriptionRoutes'));
+app.use("/api/admin", require('./routes/adminRoutes'));
 
 let server;
 

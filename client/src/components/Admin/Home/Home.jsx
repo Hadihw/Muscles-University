@@ -2,38 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {
-	FaHeartbeat,
-	FaDumbbell,
-	FaBox,
+	FaUsers,
+	FaChartBar,
+	FaCog,
 	FaUserCircle
 } from 'react-icons/fa';
 import LoadingIndicator from "../../UI/LoadingIndicator";
 
-
-
-
 const Home = ({ userData = {} }) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(null);
-	const [subscriptionDaysLeft, setSubscriptionDaysLeft] = useState(0);
 	const [greeting, setGreeting] = useState("");
 	const navigate = useNavigate();
-	const [isSubscribed, setIsSubscribed] = useState(false);
-
-
-	const goToSubscription = () => {
-		navigate('/Dashboard/SubscriptionPlans');
-	};
-
-	const cancelSubscription = () => {
-		// Logic to cancel the subscription
-		axios.post('/api/stripe/cancelSubscriptionInStripe').then(response => {
-			console.log('Subscription canceled successfully.');
-			setIsSubscribed(false);
-		}).catch(error => {
-			console.error('Error canceling subscription:', error);
-		});
-	};
 
 	useEffect(() => {
 		if (userData && Object.keys(userData).length > 0) {
@@ -55,22 +35,6 @@ const Home = ({ userData = {} }) => {
 		}
 	}, [userData]);
 
-	useEffect(() => {
-		if (userData && userData.subscription && userData.subscription.endDate) {
-			const currentDate = new Date();
-			const endDate = new Date(userData.subscription.endDate._seconds * 1000);
-			const daysLeft = Math.ceil((endDate - currentDate) / (1000 * 60 * 60 * 24));
-			setSubscriptionDaysLeft(daysLeft);
-
-			// Check endDate
-			if (endDate > currentDate) {
-				setIsSubscribed(true);
-			} else {
-				setIsSubscribed(false);
-			}
-		}
-	}, [userData]);
-
 	if (isLoading) {
 		return <LoadingIndicator />;
 	}
@@ -81,45 +45,27 @@ const Home = ({ userData = {} }) => {
 
 	return (
 		<div className="flex-1 p-8 bg-background relative">
-			<Header greeting={greeting} userData={userData} subscriptionDaysLeft={subscriptionDaysLeft} isSubscribed={isSubscribed} goToSubscription={goToSubscription} />
-			<UserProfile userData={userData} />
-			<ActivitySection />
+			<AdminHeader greeting={greeting} userData={userData} />
+			<AdminProfile userData={userData} />
+			<AdminActivitySection />
 		</div>
 	);
 };
 
-
-
-const Header = ({ greeting, userData, subscriptionDaysLeft, isSubscribed, goToSubscription }) => (
+const AdminHeader = ({ greeting, userData }) => (
 	<div className="flex items-center justify-between mb-10">
 		<div>
 			<h2 className="text-xl sm:text-2xl text-dark mb-2">{greeting}</h2>
 			<h1 className="text-3xl sm:text-5xl font-bold text-dark mb-4">{userData.firstName}</h1>
 		</div>
 		<button className="bg-dark text-white py-1 sm:py-2 px-4 sm:px-6 rounded-lg shadow-md hover:bg-dark active:bg-dark transition-colors duration-300"
-				onClick={isSubscribed ? null : goToSubscription}>
-			{isSubscribed ? `${subscriptionDaysLeft} days left on subscription` : "Upgrade Subscription"}
+				onClick={() => navigate('/AdminDashboard/ManageUsers')}>
+			Manage Users
 		</button>
 	</div>
 );
 
-
-const UserProfile = ({ userData }) => {
-	// Determine the color based on the subscription type
-	let color;
-	switch (userData.subscription?.type) {
-		case "silver":
-			color = "text-gray-600";
-			break;
-		case "gold":
-			color = "text-yellow-500";
-			break;
-		case "platinum":
-			color = "text-gray-500";
-			break;
-		default:
-			color = "text-text";
-	}
+const AdminProfile = ({ userData }) => {
 	return (
 		<div className="flex flex-col sm:flex-row bg-white rounded-lg shadow-md p-6 mb-8">
 			<img
@@ -130,19 +76,19 @@ const UserProfile = ({ userData }) => {
 			<div>
 				<h2 className="text-2xl font-semibold text-dark">{userData.firstName} {userData.lastName}</h2>
 				<p className="text-lg mt-4">
-					Subscription: <span className={`font-medium ${color}`}>{userData.subscription?.type || '-'}</span>
+					Role: Admin
 				</p>
 			</div>
 		</div>
 	)
 };
 
-const ActivitySection = () => (
+const AdminActivitySection = () => (
 	<div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-6">
-		<ActivityCard icon={<FaHeartbeat />} title="Heart Rate" description="Monitor your heart rate during workouts." />
-		<ActivityCard icon={<FaDumbbell />} title="Workouts" description="Track your daily workout routines." />
-		<ActivityCard icon={<FaBox />} title="Equipment" description="Manage your fitness equipment." />
-		<ActivityCard icon={<FaUserCircle />} title="Profile" description="Update your personal details." />
+		<ActivityCard icon={<FaUsers />} title="Users" description="Manage all users including clients and trainers." />
+		<ActivityCard icon={<FaChartBar />} title="Analytics" description="View platform usage analytics and reports." />
+		<ActivityCard icon={<FaCog />} title="Settings" description="Manage system configurations and settings." />
+		<ActivityCard icon={<FaUserCircle />} title="Profile" description="Update your admin details and settings." />
 	</div>
 );
 
@@ -157,6 +103,5 @@ const ActivityCard = ({ icon, title, description }) => (
 		<p className="text-text">{description}</p>
 	</div>
 );
-
 
 export default Home;

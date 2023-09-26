@@ -53,13 +53,14 @@ function Login() {
             const result = await signInWithPopup(auth, provider);
             const token = await result.user.getIdToken();
 
-            // Send this token to your server for verification
+            // Send this token to server for verification
             const response = await fetch("/api/auth/google/googleLogin", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ idToken: token }),
+
             });
 
             const data = await response.json();
@@ -74,8 +75,8 @@ function Login() {
 
             console.log("Server response:", data);
 
-            // Navigate to Dashboard
-            navigate("/Dashboard/Home");
+            // Navigate to ClientDashboard
+            navigate("/ClientDashboard/Home");
             window.location.reload();
 
         } catch (error) {
@@ -97,7 +98,7 @@ function Login() {
                 .then((res) => {
                     // Store the user ID in local storage
                     localStorage.setItem('userID', res.data.uid);
-                    // Navigate to Dashboard
+                    // Navigate to ClientDashboard
                     window.location.reload();
                 })
                 .catch((err) => {
@@ -113,10 +114,10 @@ function Login() {
             console.error("Firebase error:", error);
             if (error.code) {
                 switch (error.code) {
-                    case "auth/user-not-found":
+                    case "PreAuth/user-not-found":
                         setErrorMessage("User does not exist.");
                         break;
-                    case "auth/wrong-password":
+                    case "PreAuth/wrong-password":
                         const signInMethods = await fetchSignInMethodsForEmail(auth, email);
                         if (signInMethods.includes("google.com")) {
                             setErrorMessage("This email is registered with Google. Please Sign in with Google.");
@@ -125,7 +126,7 @@ function Login() {
                             setErrorMessage("Invalid Password.");
                         }
                         break;
-                    case "auth/invalid-email":
+                    case "PreAuth/invalid-email":
                         setErrorMessage("Invalid email format.");
                         break;
                     //... add more error cases as needed

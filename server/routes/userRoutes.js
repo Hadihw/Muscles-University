@@ -1,29 +1,34 @@
 const express = require("express");
-const userC = require("../controllers/userController");
+const userController = require("../controllers/userController");
 const authJWT = require("../middleware/authJWT");
 
 const router = express.Router();
 
-// Fetch all users
-router.get("/users", authJWT, userC.getAllUsers);
+// Route to fetch all users
+router.get("/users", authJWT, userController.getAllUsers);
 
-// Fetch a user by ID
-router.get("/getUser/:id", authJWT, userC.getUserById);
+// Route to fetch a user by ID
+router.get("/users/:id", authJWT, userController.getUserById);
 
-// Update user details by ID
-router.put("/updateUser/:id", authJWT, userC.updateUser);
+// Route to update user details by ID
+router.put("/users/:id", authJWT, userController.updateUser);
 
-// Check if an email exists
-router.post("/checkEmailExists", authJWT, userC.checkEmailExists);
+// Route to check if an email exists
+router.post("/checkEmailExists", authJWT, userController.checkEmailExists);
 
-// Fetch user by email
-router.get("/getUserByEmail/:email", authJWT, userC.getUserByEmail);
+// Route to fetch a user by email
+router.get("/users/:email", authJWT, userController.getUserByEmail);
 
-// Fetch all trainers
-router.get("/getAllTrainers", authJWT, userC.getAllTrainers);
+// Route to fetch all trainers
+router.get("/getAllTrainers", authJWT, userController.getAllTrainers);
 
-router.get("/fetchUserById", authJWT, userC.fetchUserById);
+// Route to fetch a user by ID in firestore
+router.get("/fetchUserById", authJWT, userController.fetchUserById);
 
-router.get("/getAllUsers", authJWT,userC.getAllUsers);
+// Route to fetch all clients
+router.get("/getAllClients", authJWT, userController.getAllClients);
+
+// Route to list all clients for a specific trainer
+router.get('/listAllClientsForTrainer/:trainerId', authJWT, userController.listAllClientsForTrainer);
 
 module.exports = router;
