@@ -1,7 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="378d2f8b-ea5b-4b3d-aac5-89db784db402" name="Changes" comment="stripe" />
+    <list default="true" id="378d2f8b-ea5b-4b3d-aac5-89db784db402" name="Changes" comment="stripe">
+      <change afterPath="$PROJECT_DIR$/client/assets/images/googleLogo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Admin/AdminNavbar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Admin/ContentManagement/ContentManagement.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Admin/FeedbackReports/FeedbackReports.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Admin/SubscriptionManagement/SubscriptionManagement.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Admin/UserManagement/UserManagement.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Client/ClientNavbar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Client/Home/Home.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Client/Workout/Workout.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/AssignWorkouts/AssignWorkouts.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/FeedbackReports/FeedbackReports.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/Home/Home.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/Profile/Profile.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/Schedule/Schedule.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/TrainerNavbar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/Dashboards/AdminDashboard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/Dashboards/TrainerDashboard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/controllers/adminController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/middleware/adminMiddleware.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/adminRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Admin/CreateSubscriptions.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/DashboardNavbar.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/Home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Admin/Home/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/Messages/Messages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Client/Messages/Messages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/Nutrition/Nutrition.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Client/Nutrition/Nutrition.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/Profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Client/Profile/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/SubscriptionPlan.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Client/SubscriptionPlan.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/Workout/Workout.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HOC/withRole.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HOC/withRole.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Notification.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Trainer/TrainerClientsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Trainer/Clients/Clients.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Dashboards/ClientDashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Landing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/PreAuth/Landing.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/PreAuth/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/PreAuth/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/SubscriptionSelect.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/routes/authRoutes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/authRoutes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/authController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/googleAuthController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/googleAuthController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/messagesRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/messagesRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/userRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/userRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +72,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="branch1" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -26,39 +80,47 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2N6rxZvGHC8pu4VPG5QTWuuw85A" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.12.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.17.13&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/HadiH/WebstormProjects/MU/server&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Admin&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/hwhad/OneDrive/Documents/GitHub/MU/client/src/components/Admin&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\components\Admin" />
+      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\components\Trainer" />
+      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\assets\images" />
       <recent name="C:\Users\HadiH\WebstormProjects\MU\server" />
       <recent name="C:\Users\HadiH\WebstormProjects\MU\client\assets\images" />
-      <recent name="C:\Users\HadiH\WebstormProjects\MU\client" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\HadiH\WebstormProjects\MU\client\src\components\Dashboard" />
-      <recent name="C:\Users\HadiH\WebstormProjects\MU\server\controllers" />
-      <recent name="C:\Users\HadiH\WebstormProjects\MU\config\development" />
-      <recent name="C:\Users\HadiH\WebstormProjects\MU" />
-      <recent name="C:\Users\HadiH\WebstormProjects\MU\client" />
+      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\pages\Dashboards" />
+      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\pages" />
+      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\components\Trainer\Clients" />
+      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\components\Trainer" />
+      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\components\Client" />
     </key>
   </component>
   <component name="RunManager">
@@ -172,6 +234,17 @@
       <workItem from="1694699684316" duration="29394000" />
       <workItem from="1694787390998" duration="38166000" />
       <workItem from="1694874693249" duration="1665000" />
+      <workItem from="1695327382245" duration="1441000" />
+      <workItem from="1695331282426" duration="534000" />
+      <workItem from="1695331973162" duration="2776000" />
+      <workItem from="1695399353493" duration="16332000" />
+      <workItem from="1695481905491" duration="2952000" />
+      <workItem from="1695484934199" duration="321000" />
+      <workItem from="1695485273123" duration="50000" />
+      <workItem from="1695487914114" duration="13002000" />
+      <workItem from="1695571156342" duration="24573000" />
+      <workItem from="1695655769849" duration="13733000" />
+      <workItem from="1695743741514" duration="7956000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1692668118762</created>
@@ -238,6 +311,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="initial" />
     <MESSAGE value="intial" />
     <MESSAGE value="google integrated" />

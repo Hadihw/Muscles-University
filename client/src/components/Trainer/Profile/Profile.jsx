@@ -53,7 +53,7 @@ const Profile = ({ userData }) => {
 
 
 	const handleUpdate = async () => {
-		let url = user.profilePic;  // default to the current profilePic
+		let url = user.profilePic;
 
 		if (tempProfilePic) {
 			// Step 1: Update the image in Firebase Storage
@@ -65,12 +65,12 @@ const Profile = ({ userData }) => {
 
 		// Step 2: Update Firestore
 		const db = getFirestore(app);
-		const userDocRef = doc(db, "users", userID); // Assuming your collection is named "users"
+		const userDocRef = doc(db, "users", userID);
 		await setDoc(userDocRef, { profilePic: url }, { merge: true });
 
 		// Step 3: Update the backend
 		user.profilePic = url;
-		const response = await axios.put(`/api/user/updateUser/${userID}`, user);
+		const response = await axios.put(`/api/user/users/${userID}`, user);
 
 		if(response.status === 200) {
 			setUser(response.data);
@@ -126,32 +126,11 @@ const Profile = ({ userData }) => {
 				setIsEditing={setIsEditing}
 				setIsConfirmModalOpen={setIsConfirmModalOpen}
 			/>
-			<div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-				<ProfileCategory title="Personal Details" icon={FaUser}>
-					<DropdownInput label="Gender" value={user.gender} onChange={handleChange('gender')} isEditing={isEditing} options={['Male', 'Female', 'Non-Binary', 'Prefer not to say']} />
-					<ProfileInput label="Age" value={user.age} onChange={handleChange('age')} isEditing={isEditing} unit="years" />
-					<ProfileInput label="Height" value={user.height} onChange={handleChange('height')} isEditing={isEditing} unit="cm" />
-					<DropdownInput
-						label="Daily Activities"
-						value={user.dailyActivities}
-						onChange={handleChange('dailyActivities')}
-						isEditing={isEditing}
-						options={['Sedentary', 'Lightly Active', 'Moderately Active', 'Very Active', 'Extra Active']}
-					/>
-				</ProfileCategory>
-				<ProfileCategory title="Nutrition" icon={FaApple}>
-					<ProfileInput label="Calories" value={user.calories} onChange={handleChange('calories')} isEditing={isEditing} unit="kcal" />
-					<ProfileInput label="Fat" value={user.fat} onChange={handleChange('fat')} isEditing={isEditing} unit="g" />
-					<ProfileInput label="Protein" value={user.protein} onChange={handleChange('protein')} isEditing={isEditing} unit="g" />
-					<ProfileInput label="Carbs" value={user.carbs} onChange={handleChange('carbs')} isEditing={isEditing} unit="g" />
-				</ProfileCategory>
-				<ProfileCategory title="Workout & Fitness" icon={FaDumbbell}>
-					<DropdownInput label="Workout Location" value={user.workoutLocation} onChange={handleChange('workoutLocation')} isEditing={isEditing} options={['Gym', 'Home', 'Outdoors']} />
-					<ProfileInput label="Current Weight" value={user.currentWeight} onChange={handleChange('currentWeight')} isEditing={isEditing} unit="lbs" />
-					<ProfileInput label="Goal Weight" value={user.goalWeight} onChange={handleChange('goalWeight')} isEditing={isEditing} unit="lbs" />
-					<DropdownInput label="Fitness Goal" value={user.fitnessGoal} onChange={handleChange('fitnessGoal')} isEditing={isEditing} options={['Lose Weight', 'Maintain Weight', 'Gain Muscle']} />
-				</ProfileCategory>
-			</div>
+			<ProfileDetails
+				user={user}
+				handleChange={handleChange}
+				isEditing={isEditing}
+			/>
 			<ConfirmationModal isModalOpen={isConfirmModalOpen} handleConfirm={handleConfirm} setIsModalOpen={setIsConfirmModalOpen} />
 			<ImageCropModal isOpen={isImageModalOpen} onClose={() => setIsImageModalOpen(false)} onConfirm={handleImageConfirm} />
 		</div>
@@ -287,30 +266,25 @@ const ProfileHeader = ({ user, isEditing, setIsImageModalOpen, setIsEditing, tem
 );
 
 const ProfileDetails = ({ user, handleChange, isEditing }) => (
-	<div className="flex flex-col space-y-4 lg:space-y-0 lg:space-x-4">
+	<div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 		<ProfileCategory title="Personal Details" icon={FaUser}>
-			<DropdownInput label="Gender" value={user.gender} onChange={handleChange('gender')} isEditing={isEditing} options={['Male', 'Female', 'Non-Binary', 'Prefer not to say']} />
-			<ProfileInput label="Age" value={user.age} onChange={handleChange('age')} isEditing={isEditing} unit="years" />
-			<ProfileInput label="Height" value={user.height} onChange={handleChange('height')} isEditing={isEditing} unit="cm" />
-			<DropdownInput
-				label="Daily Activities"
-				value={user.dailyActivities}
-				onChange={handleChange('dailyActivities')}
-				isEditing={isEditing}
-				options={['Sedentary', 'Lightly Active', 'Moderately Active', 'Very Active', 'Extra Active']}
-			/>
+			<ProfileInput label="First Name" value={user.firstName} onChange={handleChange('firstName')} isEditing={isEditing} />
+			<ProfileInput label="Last Name" value={user.lastName} onChange={handleChange('lastName')} isEditing={isEditing} />
 		</ProfileCategory>
-		<ProfileCategory title="Nutrition" icon={FaApple}>
-			<ProfileInput label="Calories" value={user.calories} onChange={handleChange('calories')} isEditing={isEditing} unit="kcal" />
-			<ProfileInput label="Fat" value={user.fat} onChange={handleChange('fat')} isEditing={isEditing} unit="g" />
-			<ProfileInput label="Protein" value={user.protein} onChange={handleChange('protein')} isEditing={isEditing} unit="g" />
-			<ProfileInput label="Carbs" value={user.carbs} onChange={handleChange('carbs')} isEditing={isEditing} unit="g" />
+		<ProfileCategory title="Certifications" icon={FaApple}>
+			<ProfileInput label="Certifications" value={user.certifications} onChange={handleChange('certifications')} isEditing={isEditing} />
 		</ProfileCategory>
-		<ProfileCategory title="Workout & Fitness" icon={FaDumbbell}>
-			<DropdownInput label="Workout Location" value={user.workoutLocation} onChange={handleChange('workoutLocation')} isEditing={isEditing} options={['Gym', 'Home', 'Outdoors']} />
-			<ProfileInput label="Current Weight" value={user.currentWeight} onChange={handleChange('currentWeight')} isEditing={isEditing} unit="lbs" />
-			<ProfileInput label="Goal Weight" value={user.goalWeight} onChange={handleChange('goalWeight')} isEditing={isEditing} unit="lbs" />
-			<DropdownInput label="Fitness Goal" value={user.fitnessGoal} onChange={handleChange('fitnessGoal')} isEditing={isEditing} options={['Lose Weight', 'Maintain Weight', 'Gain Muscle']} />
+		<ProfileCategory title="Specialization" icon={FaDumbbell}>
+			<ProfileInput label="Specialization" value={user.specialization} onChange={handleChange('specialization')} isEditing={isEditing} />
+		</ProfileCategory>
+		<ProfileCategory title="Workout Plans" icon={FaDumbbell}>
+			{/* List workout plans */}
+		</ProfileCategory>
+		<ProfileCategory title="Years of Experience" icon={FaDumbbell}>
+			<ProfileInput label="Years of Experience" value={user.yearsOfExperience} onChange={handleChange('yearsOfExperience')} isEditing={isEditing} />
+		</ProfileCategory>
+		<ProfileCategory title="Availability" icon={FaDumbbell}>
+			<ProfileInput label="Availability" value={user.availability} onChange={handleChange('availability')} isEditing={isEditing} />
 		</ProfileCategory>
 	</div>
 );
@@ -353,27 +327,6 @@ const ProfileInput = ({ label, value, onChange, isEditing, unit }) => {
 	);
 };
 
-const DropdownInput = ({ label, value, onChange, isEditing, options }) => {
-	return isEditing ? (
-		<div className="mb-4 flex items-center border-b pb-2">
-			<label className="block flex-grow text-dark text-md font-semibold mb-2">{label}</label>
-			<select
-				value={value || ""}
-				onChange={onChange}
-				className="w-2/5 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-md"
-			>
-				<option value={null}></option> {/* This option will be blank */}
-				{options.map((option, index) => (
-					<option key={index} value={option}>
-						{option}
-					</option>
-				))}
-			</select>
-		</div>
-	) : (
-		<ProfileInput label={label} value={value} isEditing={false} />
-	);
-};
 
 const ProfileCategory = ({ title, icon: Icon, children }) => {
 	return (

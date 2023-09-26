@@ -16,7 +16,7 @@ const SubscriptionPlans = () => {
 	useEffect(() => {
 		setIsLoading(true);
 		// Fetch user data
-		axios.get(`/api/user/getUser/${userID}`)
+		axios.get(`/api/user/users/${userID}`)
 			.then(response => {
 				const user = response.data;
 				setUserData(user);

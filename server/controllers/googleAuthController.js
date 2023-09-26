@@ -20,7 +20,7 @@ const googleLogin = async (req, res) => {
 		try {
 			firebaseAuthUser = await admin.auth().getUser(decodedToken.uid);
 		} catch (err) {
-			if (err.code !== 'auth/user-not-found') {
+			if (err.code !== 'PreAuth/user-not-found') {
 				console.error(`Error checking Firebase Authentication: ${err.message}`);
 				return res.status(500).json({ message: 'There was an issue processing your request. Please try again later.' });
 			}
@@ -43,8 +43,9 @@ const googleLogin = async (req, res) => {
 			return res.status(400).json({ message: "User does not exist. Please register first!" });
 		}
 
-		const role = "user";  // Default role
-		const accessToken = jwt.sign({ id: decodedToken.uid, email: decodedToken.email, role }, JWT_SECRET_KEY, {
+		const userRole = userSnapshot.data().userRole;
+
+		const accessToken = jwt.sign({ id: decodedToken.uid, email: decodedToken.email, userRole: userRole }, JWT_SECRET_KEY, {
 			expiresIn: '1h'
 		});
 
@@ -86,7 +87,7 @@ const googleRegister = async (req, res) => {
 		try {
 			await admin.auth().getUser(decodedToken.uid);
 		} catch (err) {
-			if (err.code === 'auth/user-not-found') {
+			if (err.code === 'PreAuth/user-not-found') {
 				firebaseAuthUserExists = false;
 			} else {
 				console.error(`Error checking Firebase Authentication: ${err.message}`);
@@ -123,10 +124,11 @@ const googleRegister = async (req, res) => {
 				height: null,
 				protein: null,
 				workoutLocation: null,
+				createdAt:admin.firestore.Timestamp.fromDate(new Date()),
 				subscription: {
 					id: null,
-					type: "Free",
-					startDate: admin.firestore.Timestamp.fromDate(new Date()),
+					type: null,
+					startDate: null,
 					endDate: null, // Infinite end date for Free plan
 					autoRenewal: true
 				}

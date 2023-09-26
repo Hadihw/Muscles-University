@@ -70,12 +70,17 @@ const registerUser = async (req, res) => {
 			carbs:null,
 			workoutLocation:null,
 			profilePic: null,
-			isAdmin: false,
+			createdAt:admin.firestore.Timestamp.fromDate(new Date()),
+			assignedTrainer: null, // New field to store the UID of the assigned trainer
+			assignedWorkoutPlans: [], // New field to store assigned workout plans
+			dietPlan: null, // New field to store diet plans
+			booking: null, // New field to store booking information
+			healthInformation: null, // New field to store health information
 			subscription: {
 				id: null,
-				type: "Free",
-				startDate: admin.firestore.Timestamp.fromDate(new Date()),
-				endDate: null, // Infinite end date for Free plan
+				type: null,
+				startDate: null,
+				endDate: null,
 				autoRenewal: true
 			}
 		};
@@ -108,11 +113,11 @@ const login = async (req, res) => {
 			return res.status(401).json({ message: 'The email address you entered does not correspond to any account. Make sure you’ve entered it correctly.' });
 		}
 
-		const accessToken = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET_KEY, {
+		const accessToken = jwt.sign({ id: user.id, email: user.email,userRole: user.userRole}, JWT_SECRET_KEY, {
 			expiresIn: '1h'
 		});
 
-		const refreshToken = jwt.sign({ id: user.id, email: user.email }, JWT_REFRESH_SECRET_KEY, {
+		const refreshToken = jwt.sign({ id: user.id, email: user.email,userRole: user.userRole }, JWT_REFRESH_SECRET_KEY, {
 			expiresIn: '7d'
 		});
 
