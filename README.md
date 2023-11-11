@@ -17,6 +17,7 @@ Muscles University is committed to promoting fitness and wellness through a comp
 - Login/Sign Up
 - FAQs
 - Contact Us
+
 **For Trainers**
 - Home
 - Clients
