@@ -29,25 +29,25 @@ Muscles University is committed to promoting fitness and wellness through a comp
 
 **For Clients**
 
-    *Silver Membership*
-    - Home
-    - Messages
-    - Profile
-    - Workout
+Silver Membership
+- Home
+- Messages
+- Profile
+- Workout
 
-    *Gold Membership*
-    - Home
-    - Messages
-    - Nutrition
-    - Profile
-    - Workout
+Gold Membership
+- Home
+- Messages
+- Nutrition
+- Profile
+- Workout
 
-    *Platinum Membership*
-    - Home
-    - Messages
-    - Nutrition
-    - Profile
-    - Workout
+Platinum Membership
+- Home
+- Messages
+- Nutrition
+- Profile
+- Workout
       
 **For Admins**
 - Home
