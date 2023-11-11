@@ -53,6 +53,9 @@ app.use('/api/user', require('./routes/userRoutes'));
 app.use('/api/messages', require('./routes/messagesRoutes'));
 app.use('/api/subscription', require('./routes/subscriptionRoutes'));
 app.use("/api/admin", require('./routes/adminRoutes'));
+app.use('/api/exercise', require('./routes/exerciseRoutes'));
+app.use("/api/workoutPlan", require('./routes/workoutRoutes'));
+
 
 let server;
 

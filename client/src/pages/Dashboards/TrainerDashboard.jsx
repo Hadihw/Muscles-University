@@ -9,7 +9,8 @@ import {useDispatch} from "react-redux";
 const Home = lazy(() => import('../../components/Trainer/Home/Home'));
 const Profile = lazy(() => import('../../components/Trainer/Profile/Profile'));
 const Clients = lazy(() => import('../../components/Trainer/Clients/Clients'));
-const WorkoutBuilder = lazy(() => import('../../components/Trainer/AssignWorkouts/AssignWorkouts'));
+const Messages = lazy(() => import('../../components/Trainer/Messages/Messages'));
+const WorkoutBuilder = lazy(() => import('../../components/Trainer/WorkoutBuilder/WorkoutBuilder'));
 const Schedule = lazy(() => import('../../components/Trainer/Schedule/Schedule'));
 const FeedbackReports = lazy(() => import('../../components/Trainer/FeedbackReports/FeedbackReports'));
 function RedirectToHome() {
@@ -71,6 +72,7 @@ const TrainerDashboard = () => {
                                     <Route path="/TrainerDashboard/Home" element={<Home userData={userData}/>} />
                                     <Route path="/TrainerDashboard/Profile" element={<Profile userData={userData}/>} />
                                     <Route path="/TrainerDashboard/Clients" element={<Clients/>} />
+                                    <Route path="/TrainerDashboard/Messages" element={<Messages />} />
                                     <Route path="/TrainerDashboard/WorkoutBuilder" element={<WorkoutBuilder/>} />
                                     <Route path="/TrainerDashboard/Schedule" element={<Schedule/>} />
                                     <Route path="/TrainerDashboard/FeedbackReports" element={<FeedbackReports/>} />
