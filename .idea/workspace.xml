@@ -4,56 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="378d2f8b-ea5b-4b3d-aac5-89db784db402" name="Changes" comment="stripe">
-      <change afterPath="$PROJECT_DIR$/client/assets/images/googleLogo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Admin/AdminNavbar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Admin/ContentManagement/ContentManagement.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Admin/FeedbackReports/FeedbackReports.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Admin/SubscriptionManagement/SubscriptionManagement.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Admin/UserManagement/UserManagement.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Client/ClientNavbar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Client/Home/Home.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Client/Workout/Workout.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/AssignWorkouts/AssignWorkouts.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/FeedbackReports/FeedbackReports.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/Home/Home.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/Profile/Profile.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/Schedule/Schedule.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/TrainerNavbar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/Dashboards/AdminDashboard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/Dashboards/TrainerDashboard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/controllers/adminController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/middleware/adminMiddleware.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/adminRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="378d2f8b-ea5b-4b3d-aac5-89db784db402" name="Changes" comment="workout-implementation">
+      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/Messages/Messages.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/WorkoutBuilder/ExerciseItem.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/WorkoutBuilder/WorkoutBuilder.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/WorkoutBuilder/WorkoutSheet.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/WorkoutBuilder/workoutItem.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/controllers/exerciseController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/controllers/workoutController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/exerciseRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/workoutRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Admin/CreateSubscriptions.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/DashboardNavbar.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/Home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Admin/Home/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/Messages/Messages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Client/Messages/Messages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/Nutrition/Nutrition.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Client/Nutrition/Nutrition.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/Profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Client/Profile/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/SubscriptionPlan.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Client/SubscriptionPlan.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Dashboard/Workout/Workout.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HOC/withRole.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HOC/withRole.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Notification.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Trainer/TrainerClientsTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Trainer/Clients/Clients.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Dashboards/ClientDashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Landing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/PreAuth/Landing.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/PreAuth/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/PreAuth/Register.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/auth/SubscriptionSelect.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/routes/authRoutes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/authRoutes.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/authController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/googleAuthController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/googleAuthController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/userController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/messagesRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/messagesRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/userRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/userRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Client/Messages/Messages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Client/Messages/Messages.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Trainer/AssignWorkouts/AssignWorkouts.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Trainer/TrainerNavbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Trainer/TrainerNavbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Dashboards/TrainerDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Dashboards/TrainerDashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/config/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/config/firebase.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,13 +40,19 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Admin" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/client/src/components/Trainer/Messages/Messages.jsx" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -94,9 +68,9 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Admin&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Workout-Implementation&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/hwhad/OneDrive/Documents/GitHub/MU/client/src/components/Admin&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/hwhad/WebDev/Documents/GitHub/MU&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -116,11 +90,11 @@
       <recent name="C:\Users\HadiH\WebstormProjects\MU\client\assets\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\server\controllers" />
       <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\pages\Dashboards" />
       <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\pages" />
       <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\components\Trainer\Clients" />
       <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\components\Trainer" />
-      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\components\Client" />
     </key>
   </component>
   <component name="RunManager">
@@ -244,7 +218,29 @@
       <workItem from="1695487914114" duration="13002000" />
       <workItem from="1695571156342" duration="24573000" />
       <workItem from="1695655769849" duration="13733000" />
-      <workItem from="1695743741514" duration="7956000" />
+      <workItem from="1695743741514" duration="17300000" />
+      <workItem from="1695827596654" duration="27509000" />
+      <workItem from="1695912161495" duration="38000" />
+      <workItem from="1695913032234" duration="920000" />
+      <workItem from="1696046798043" duration="656000" />
+      <workItem from="1696119359787" duration="227000" />
+      <workItem from="1696193840425" duration="3000" />
+      <workItem from="1696385193812" duration="1514000" />
+      <workItem from="1696430354081" duration="15734000" />
+      <workItem from="1696873099205" duration="345000" />
+      <workItem from="1697082858983" duration="467000" />
+      <workItem from="1697167959132" duration="654000" />
+      <workItem from="1697170446249" duration="145000" />
+      <workItem from="1697170611103" duration="299000" />
+      <workItem from="1697170937106" duration="138000" />
+      <workItem from="1697171093332" duration="925000" />
+      <workItem from="1697219011722" duration="201000" />
+      <workItem from="1698267969541" duration="909000" />
+      <workItem from="1698984613559" duration="1367000" />
+      <workItem from="1699030214775" duration="24000" />
+      <workItem from="1699117716833" duration="30000" />
+      <workItem from="1699140752936" duration="597000" />
+      <workItem from="1699579280842" duration="3563000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1692668118762</created>
@@ -281,7 +277,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694876935545</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="workout-implementation">
+      <option name="closed" value="true" />
+      <created>1695752978314</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1695752978314</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,6 +320,7 @@
     <MESSAGE value="intial" />
     <MESSAGE value="google integrated" />
     <MESSAGE value="stripe" />
-    <option name="LAST_COMMIT_MESSAGE" value="stripe" />
+    <MESSAGE value="workout-implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="workout-implementation" />
   </component>
 </project>

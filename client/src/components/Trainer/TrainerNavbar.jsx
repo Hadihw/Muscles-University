@@ -24,6 +24,7 @@ const TrainerNavbar = ({ userData }) => {
 		{ path: "/TrainerDashboard/Home", IconComponent: FaHome, label: "Home" },
 		{ path: "/TrainerDashboard/Profile", IconComponent: FaUserCircle, label: "Profile" },
 		{ path: "/TrainerDashboard/Clients", IconComponent: FaUsers, label: "Clients" },
+		{ path: "/TrainerDashboard/Messages", IconComponent: FaCommentAlt, label: "Messages" },
 		{ path: "/TrainerDashboard/WorkoutBuilder", IconComponent: FaDumbbell, label: "Workout Builder" },
 		{ path: "/TrainerDashboard/Schedule", IconComponent: FaCalendarAlt, label: "Schedule" },
 		{ path: "/TrainerDashboard/FeedbackReports", IconComponent: FaEnvelopeOpenText, label: "Feedback & Reports" }

@@ -160,13 +160,12 @@ const Messages = () => {
 	};
 
 	useEffect(() => {
-		const socket = io('http://localhost:8080'); // Connect to your server. Change the URL to your server's address.
+		const socket = io('http://localhost:8080');
 
 		socket.on('messagesUpdate', (updatedMessages) => {
 			setMessages(updatedMessages);
 		});
 
-		// Cleanup the socket connection when the component unmounts
 		return () => {
 			socket.disconnect();
 		};
@@ -213,15 +212,7 @@ const Messages = () => {
 					_nanoseconds: (Date.now() % 1000) * 1000000  // Convert milliseconds to nanoseconds
 				};
 
-				setMessages(prevMessages => {
-					const updatedMessages = [{
-						senderId: currentUserId,
-						content: newMessage,
-						timestamp: tempTimestamp  // Temporary timestamp
-					}, ...prevMessages];
-
-					return updatedMessages.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
-				});setNewMessage("");
+				setNewMessage("");
 			})
 			.catch(err => {
 				console.error("Error sending message:", err);
@@ -258,7 +249,10 @@ const Messages = () => {
 					)}
 					<MessageList
 						messages={messages}
-						currentUserId={currentUserId} onMessageClick={setSelectedMessageId} trainers={trainers} selectedMessageId={selectedMessageId}
+						currentUserId={currentUserId}
+						onMessageClick={setSelectedMessageId}
+						trainers={trainers}
+						selectedMessageId={selectedMessageId}
 					/>
 					<MessageInput onSendMessage={handleSendMessage} message={newMessage} setMessage={setNewMessage} />
 				</div>
