@@ -1,7 +1,5 @@
-import React, {useState, useEffect, useRef} from 'react';
 import axios from 'axios';
 import {FaApple, FaDumbbell, FaEdit, FaSpinner, FaUser} from 'react-icons/fa';
-import firebase from "firebase/compat";
 import 'cropperjs/dist/cropper.css';
 import {Cropper} from "react-cropper";
 import app from "../../../../Firebase/firebaseConfig";

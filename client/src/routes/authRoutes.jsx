@@ -3,12 +3,16 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-route
 
 import Login from "../pages/PreAuth/Login";
 import Register from "../pages/PreAuth/Register";
+import LandingPage from "../pages/PreAuth/Landing";
+import ContactUs from "../pages/PreAuth/ContactUs";
+import Faqs from "../pages/PreAuth/Faqs";
+import About from "../pages/PreAuth/About";
 
-function RedirectToLogin() {
+function RedirectToLanding() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        navigate('/login');
+        navigate('/');
     }, [navigate]);
 
     return null;
@@ -17,9 +21,13 @@ function RedirectToLogin() {
 function AuthRoutes() {
     return (
         <Routes>
+            <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="*" element={<RedirectToLogin />} />
+            <Route path="/about" element={<About/>} />
+            <Route path="/faqs" element={<Faqs/>} />
+            <Route path="/contactus" element={<ContactUs />} />
+            <Route path="*" element={<RedirectToLanding />} />
         </Routes>
     );
 }

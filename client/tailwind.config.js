@@ -1,48 +1,69 @@
-module.exports = {
-  mode: "jit",
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false, // or 'media' or 'class'
+import { Config } from "tailwindcss";
+
+const config: Config = {
   content: [
-    "./src/**/*.{html,js}",
-    "./node_modules/tw-elements/dist/js/**/*.js"
+    "./node_modules/flowbite-react/**/*.js",
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./index.html",
   ],
   theme: {
-    fontFamily: {
-      'axiom': ['Axiom', 'sans-serif'],
-    },
-    extend: {},
-    colors: {
-      'medium': '#9F8157',
-      'dark':'#745228',
-      'light':'#FBEDC7',
-      'gullGray': '#9CA5B4',
-      'Manatee' : '#8F96A7'
-
+    extend: {
+      keyframes: {
+        shine: {
+          '0%': { backgroundPosition: '100% 100%' },
+          '100%': { backgroundPosition: '0 0' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideInFromLeft: {
+          '0%': { transform: 'translateX(-20%)', opacity: 0 },
+          '100%': { transform: 'translateX(0)', opacity: 1 },
+        },
+        slideInFromRight: {
+          '0%': { transform: 'translateX(20%)', opacity: 0 },
+          '100%': { transform: 'translateX(0)', opacity: 1 },
+        },
+      },
+      animation: {
+        'shine': 'shine 1s ease-in-out forwards',
+        'fade-in': 'fadeIn 1s ease-in-out',
+        "fade-in-0.5": "fadeIn 0.3s ease-in-out",
+        'slide-in-left': 'slideInFromLeft 1s ease-out',
+        'slide-in-right': 'slideInFromRight 1s ease-out',
+      },
+      backgroundImage: {
+        "landingPageBackground": "url('/assets/images/landingPageBackground.PNG')"
+      },
+      colors: {
+        medium: "#9F8157",
+        dark: "#745228",
+        light: "#FBEDC7",
+        gullGray: "#9CA5B4",
+        Manatee: "#8F96A7",
+      },
+      fontFamily: {
+        axiom: ["Axiom", "sans-serif"],
+      },
     },
     container: {
       center: true,
     },
     screens: {
       'sm': '640px',
-      // => @media (min-width: 640px) { ... }
-
       'md': '834px',
-      // => @media (min-width: 834px) { ... }
-
       'lg': '1024px',
-      // => @media (min-width: 1024px) { ... }
-
       'xl': '1280px',
-      // => @media (min-width: 1280px) { ... }
-
       '2xl': '1536px',
-      // => @media (min-width: 1536px) { ... }
     }
   },
-  variants: {
-    extend: {},
-  },
   plugins: [
+    require("flowbite/plugin"),
     require("daisyui"),
   ],
-}
+};
+
+export default config;
