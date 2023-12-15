@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { TypeAnimation } from "react-type-animation";
-import RegisterForm from "../../components/Register/RegisterForm";
+import RegisterForm from "../../components/PreAuth/RegisterForm";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import googleLogo from '/assets/images/googleLogo.png';
 import { useNavigate } from "react-router-dom";
