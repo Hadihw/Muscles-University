@@ -3,6 +3,8 @@ import {useNavigate} from "react-router-dom";
 import SlideInOnViewAnimation from "../../components/Animations/SlideInOnViewAnimation";
 import FadeInOnViewAnimation from "../../components/Animations/FadeInOnViewAnimation";
 import ShineOnViewAnimation from "../../components/Animations/ShineOnViewAnimation";
+import {FaDumbbell, FaNutritionix } from 'react-icons/fa';
+
 
 
 
@@ -28,43 +30,40 @@ const MainContent = () => {
 };
 
 
-const Feature = ({ title, description, icon }) => {
+const Feature = ({ title, description, IconComponent }) => {
     return (
-        <FadeInOnViewAnimation>
-            <div className="flex flex-col md:flex-row items-center text-center md:text-left text-white mb-8">
-                {icon && <div className="mb-4 md:mb-0 md:mr-4">{icon}</div>}
-                <div>
-                    <h3 className="font-bold font-axiom text-light uppercase">{title}</h3>
-                    <p className="text-gray-300">{description}</p>
-                </div>
+        <div className="relative overflow-hidden rounded-lg shadow-lg p-6 bg-white">
+            <div className="flex flex-col items-center justify-center text-center">
+                <IconComponent className="w-12 h-12 text-[#FBEDC7]"/>
+                <h3 className="text-lg font-bold text-black mt-4">{title}</h3>
+                <p className="text-gray-700 mt-2">{description}</p>
+                <button className="mt-4 px-4 py-2 bg-[#FBEDC7] hover:bg-[#FBEDC7] text-white border-none rounded">Learn
+                    More
+                </button>
             </div>
-        </FadeInOnViewAnimation>
+        </div>
     );
 };
 
+
 const Features = () => {
     return (
-        <section className="bg-black py-20 md:pb-20 md:pt-48">
-            <div className="container mx-auto px-4">
-                <h2 className="text-3xl text-light font-axiom mb-8 text-center">Our Features</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {/* Add Feature components here */}
-                    <Feature
-                        title="Personalized Training"
-                        description="Custom workouts tailored to your goals."
-                        // icon={<YourIconComponent />} // Optional icon component
-                    />
-                    <Feature
-                        title="Nutrition Plans"
-                        description="Diet plans that complement your fitness regime."
-                        // icon={<YourIconComponent />}
-                    />
-                    // ... more features
-                </div>
-            </div>
+        <section className="bg-black w-full py-6 md:py-12 lg:py-16 grid grid-cols-1 md:grid-cols-5 gap-6">
+            <Feature
+                title="Nutrition Plan"
+                description="Get personalized nutrition plans tailored to your needs."
+                IconComponent={FaDumbbell}
+            />
+            <Feature
+                title="Personal Training"
+                description="Get 1-on-1 training sessions from our experts."
+                IconComponent={FaNutritionix}
+            />
+            {/* Add more FeatureCards here */}
         </section>
     );
 };
+
 
 
 
