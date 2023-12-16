@@ -4,7 +4,7 @@ import {Link, Router, useLocation, useNavigate} from "react-router-dom";
 import { Helmet } from "react-helmet";
 import axios from "axios";
 import { TypeAnimation } from 'react-type-animation';
-import googleLogo from '../../../assets/images/googleLogo.png';
+import googleLogo from '/assets/images/googleLogo.png';
 import app from "../../../Firebase/firebaseConfig";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, fetchSignInMethodsForEmail } from "firebase/auth";
 
@@ -150,9 +150,12 @@ function Login() {
       <div className="w-full max-w-md space-y-8">
         <div>
           <img
-            className="mx-auto h-40 w-auto mb-10"
-            src="../../assets/images/logo(500x500).png"
-            alt="Your Company"
+              onClick={() => {
+                  navigate("/");
+              }}
+            className="mx-auto h-40 w-auto mb-10 cursor-pointer"
+            src="/assets/images/logo(500x500).png"
+            alt="Muscles University"
           />
           <h2 className="text-center text-4xl font-bold tracking-tight font-axiom text-dark" data-testid="login-title">
             <TypeAnimation

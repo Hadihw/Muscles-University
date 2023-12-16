@@ -5,24 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="378d2f8b-ea5b-4b3d-aac5-89db784db402" name="Changes" comment="workout-implementation">
-      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/Messages/Messages.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/WorkoutBuilder/ExerciseItem.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/WorkoutBuilder/WorkoutBuilder.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/WorkoutBuilder/WorkoutSheet.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Trainer/WorkoutBuilder/workoutItem.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/controllers/exerciseController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/controllers/workoutController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/exerciseRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/workoutRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Client/Messages/Messages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Client/Messages/Messages.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Trainer/AssignWorkouts/AssignWorkouts.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Trainer/TrainerNavbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Trainer/TrainerNavbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Dashboards/TrainerDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Dashboards/TrainerDashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/config/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/config/firebase.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/PreAuth/Landing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/PreAuth/Landing.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Admin" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,7 +36,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -67,34 +51,39 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Workout-Implementation&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/landing-page-creation&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/hwhad/WebDev/Documents/GitHub/MU&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/WebDev/GitHub/MU/server&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.AIAssistantPromptsLibrary&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WebDev\GitHub\MU\server" />
+      <recent name="D:\WebDev\GitHub\MU" />
+      <recent name="C:\Users\hwhad\WebDev\Documents\GitHub\MU\client\public\assets\images" />
       <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\components\Admin" />
       <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\components\Trainer" />
-      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\assets\images" />
-      <recent name="C:\Users\HadiH\WebstormProjects\MU\server" />
-      <recent name="C:\Users\HadiH\WebstormProjects\MU\client\assets\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\server\controllers" />
-      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\pages\Dashboards" />
-      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\pages" />
-      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\components\Trainer\Clients" />
-      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\components\Trainer" />
+      <recent name="D:\WebDev\GitHub\MU" />
+      <recent name="C:\Users\hwhad\WebDev\Documents\GitHub\MU\client\src\components\Animations" />
+      <recent name="C:\Users\hwhad\WebDev\Documents\GitHub\MU\client\public\assets\images" />
+      <recent name="C:\Users\hwhad\WebDev\Documents\GitHub\MU\client" />
+      <recent name="C:\Users\hwhad\WebDev\Documents\GitHub\MU\client\src" />
     </key>
   </component>
   <component name="RunManager">
@@ -241,6 +230,56 @@
       <workItem from="1699117716833" duration="30000" />
       <workItem from="1699140752936" duration="597000" />
       <workItem from="1699579280842" duration="3563000" />
+      <workItem from="1699672277922" duration="2323000" />
+      <workItem from="1699724851818" duration="1845000" />
+      <workItem from="1699735795571" duration="16827000" />
+      <workItem from="1699764958469" duration="3828000" />
+      <workItem from="1699768878023" duration="1806000" />
+      <workItem from="1699809340061" duration="1627000" />
+      <workItem from="1699817802474" duration="6084000" />
+      <workItem from="1699837410543" duration="117000" />
+      <workItem from="1699837553491" duration="142000" />
+      <workItem from="1699837704504" duration="6552000" />
+      <workItem from="1699845390289" duration="9742000" />
+      <workItem from="1699897880260" duration="501000" />
+      <workItem from="1699919132591" duration="16840000" />
+      <workItem from="1699987060322" duration="81000" />
+      <workItem from="1700004562657" duration="9259000" />
+      <workItem from="1700070962491" duration="36120000" />
+      <workItem from="1700158755623" duration="4460000" />
+      <workItem from="1700183105224" duration="1974000" />
+      <workItem from="1700271781612" duration="7134000" />
+      <workItem from="1700335793691" duration="6159000" />
+      <workItem from="1700368686068" duration="1940000" />
+      <workItem from="1701016771537" duration="412000" />
+      <workItem from="1701017329448" duration="1277000" />
+      <workItem from="1701042606226" duration="320000" />
+      <workItem from="1701043149389" duration="633000" />
+      <workItem from="1701239091372" duration="501000" />
+      <workItem from="1701281789691" duration="22000" />
+      <workItem from="1701287937175" duration="1016000" />
+      <workItem from="1701289624015" duration="184000" />
+      <workItem from="1701289821910" duration="6000" />
+      <workItem from="1701311825452" duration="195000" />
+      <workItem from="1701312038855" duration="51000" />
+      <workItem from="1701312346186" duration="7000" />
+      <workItem from="1701568128153" duration="648000" />
+      <workItem from="1701903953708" duration="2468000" />
+      <workItem from="1702086601766" duration="158000" />
+      <workItem from="1702086836048" duration="2320000" />
+      <workItem from="1702141526722" duration="2183000" />
+      <workItem from="1702168123241" duration="129000" />
+      <workItem from="1702168259321" duration="659000" />
+      <workItem from="1702168927064" duration="21000" />
+      <workItem from="1702168954472" duration="412000" />
+      <workItem from="1702169375922" duration="3995000" />
+      <workItem from="1702240548244" duration="734000" />
+      <workItem from="1702258700992" duration="611000" />
+      <workItem from="1702262717334" duration="1230000" />
+      <workItem from="1702602538715" duration="43000" />
+      <workItem from="1702602628232" duration="4258000" />
+      <workItem from="1702618350682" duration="1345000" />
+      <workItem from="1702659246675" duration="4508000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1692668118762</created>
@@ -290,6 +329,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="javascript:npm:react" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:hbs" />
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:tailwindcss" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:vite" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:pug" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:postcss" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

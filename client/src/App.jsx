@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import io from 'socket.io-client';
-import "./static/css/index.css";
+import "./index.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import AuthRoutes from "./routes/authRoutes";
 import ClientDashboard from "./pages/Dashboards/ClientDashboard";
@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setLoggedIn, setLoggedOut, setLoading, selectLoggedIn, selectLoading } from './Redux/authSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import logo from '../assets/images/logo(500x500).png';
+import logo from '/assets/images/logo(500x500).png';
 
 function App() {
     const loggedIn = useSelector(selectLoggedIn);

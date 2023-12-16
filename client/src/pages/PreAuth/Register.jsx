@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { TypeAnimation } from "react-type-animation";
-import RegisterForm from "../../components/Register/RegisterForm";
+import RegisterForm from "../../components/PreAuth/RegisterForm";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import googleLogo from '../../../assets/images/googleLogo.png';
+import googleLogo from '/assets/images/googleLogo.png';
 import { useNavigate } from "react-router-dom";
 
 
@@ -69,7 +69,10 @@ function Register() {
         <div className="flex bg-light h-screen justify-center py-12 px-4 sm:px-6 lg:px-8">
             <div className="w-full flex-grow flex justify-center">
                 <div className="w-full">
-                    <img className="mx-auto h-40 w-auto mb-10" src="../../assets/images/logo(500x500).png" alt="Muscles University" />
+                    <img onClick={() => {
+                        navigate("/");
+                    }}
+                         className="mx-auto h-40 w-auto mb-10 cursor-pointer" src="/assets/images/logo(500x500).png" alt="Muscles University" />
                     <h2 className="text-center text-4xl font-bold tracking-tight font-axiom text-dark">
                         <TypeAnimation sequence={['Register Now', 2000, 'Create an Account', 2000]} speed={50} className="" wrapper="span" repeat={Infinity} />
                     </h2>

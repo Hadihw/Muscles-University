@@ -17,11 +17,6 @@ admin.initializeApp({
 const firestore = admin.firestore();
 const messagesCollection = firestore.collection('messages');
 
-// Read the SSL certificate files
-const privateKey = fs.readFileSync("../config/development/server.key", "utf8");
-const certificate = fs.readFileSync("../config/development/server.cert", "utf8");
-const credentials = { key: privateKey, cert: certificate };
-
 const app = express();
 
 // Middleware to capture raw body or parse as JSON based on route
@@ -56,7 +51,6 @@ app.use("/api/admin", require('./routes/adminRoutes'));
 app.use('/api/exercise', require('./routes/exerciseRoutes'));
 app.use("/api/workoutPlan", require('./routes/workoutRoutes'));
 
-
 let server;
 
 if (process.env.NODE_ENV === 'development') {
@@ -64,7 +58,7 @@ if (process.env.NODE_ENV === 'development') {
     console.log(`HTTP server listening on port ${process.env.PORT || 8080}!`);
   });
 } else {
-  server = https.createServer(credentials, app);
+  server = https.createServer(app);
   server.listen(process.env.PORT || 8080, () => {
     console.log(`HTTPS server listening on port ${process.env.PORT || 8080}!`);
   });

@@ -1,19 +1,19 @@
 // vite.config.js
 
 import { defineConfig } from 'vite';
-import reactRefresh from '@vitejs/plugin-react-refresh';
+import react from '@vitejs/plugin-react';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: '../.env' });
 
 export default defineConfig({
-  plugins: [reactRefresh()],
+  plugins: [react()],
   server: {
+    port: 3000,
     host: true,
     proxy: {
       '/api': {
         target: 'http://localhost:8080',
-        // Add these lines
         secure: false,
         changeOrigin: true,
       },
