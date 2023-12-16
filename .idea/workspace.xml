@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="378d2f8b-ea5b-4b3d-aac5-89db784db402" name="Changes" comment="workout-implementation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/PreAuth/Landing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/PreAuth/Landing.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/PreAuth/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/PreAuth/Register.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
