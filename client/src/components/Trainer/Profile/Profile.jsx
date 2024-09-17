@@ -1,3 +1,4 @@
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import {FaApple, FaDumbbell, FaEdit, FaSpinner, FaUser} from 'react-icons/fa';
 import 'cropperjs/dist/cropper.css';

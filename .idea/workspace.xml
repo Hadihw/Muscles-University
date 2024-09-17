@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="378d2f8b-ea5b-4b3d-aac5-89db784db402" name="Changes" comment="workout-implementation">
+    <list default="true" id="378d2f8b-ea5b-4b3d-aac5-89db784db402" name="Changes" comment="Update workspace configuration and fix import path in Register.jsx&#10;&#10;The main adjustments in the workspace.xml file include setting the git-widget-placeholder to 'master' and adding the GithubPullRequestsUISettings component. In client/src/pages/PreAuth/Register.jsx, the import path for RegisterForm has been updated for the directory change.">
+      <change beforePath="$PROJECT_DIR$/.idea/MU.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MU.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/PreAuth/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/PreAuth/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/PreAuth/ComingSoon.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/PreAuth/ComingSoon.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/PreAuth/Landing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/PreAuth/Landing.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/routes/authRoutes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/authRoutes.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,12 +33,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Hadihw"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Hadihw&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -63,34 +67,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/WebDev/GitHub/MU/server",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "settings.editor.selected.configurable": "ml.llm.AIAssistantPromptsLibrary",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.10.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.10.8&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/WebDev/GitHub/MU&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.AIAssistantPromptsLibrary&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WebDev\GitHub\MU\client\public\assets\images" />
       <recent name="D:\WebDev\GitHub\MU\server" />
       <recent name="D:\WebDev\GitHub\MU" />
       <recent name="C:\Users\hwhad\WebDev\Documents\GitHub\MU\client\public\assets\images" />
       <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\components\Admin" />
-      <recent name="C:\Users\hwhad\OneDrive\Documents\GitHub\MU\client\src\components\Trainer" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\WebDev\GitHub\MU" />
@@ -294,6 +300,28 @@
       <workItem from="1702602628232" duration="4258000" />
       <workItem from="1702618350682" duration="1345000" />
       <workItem from="1702659246675" duration="4508000" />
+      <workItem from="1702770901185" duration="8536000" />
+      <workItem from="1702834280953" duration="89000" />
+      <workItem from="1702855574002" duration="3652000" />
+      <workItem from="1702919086186" duration="436000" />
+      <workItem from="1703017025954" duration="608000" />
+      <workItem from="1703034744350" duration="2452000" />
+      <workItem from="1703714085957" duration="18000" />
+      <workItem from="1704873437659" duration="236000" />
+      <workItem from="1705004029141" duration="11000" />
+      <workItem from="1710524351652" duration="691000" />
+      <workItem from="1715366662765" duration="3536000" />
+      <workItem from="1716483632056" duration="1958000" />
+      <workItem from="1717250782270" duration="1408000" />
+      <workItem from="1717350984739" duration="12072000" />
+      <workItem from="1717367329396" duration="41000" />
+      <workItem from="1717368277317" duration="1397000" />
+      <workItem from="1718471105207" duration="5319000" />
+      <workItem from="1718482114112" duration="889000" />
+      <workItem from="1720221178641" duration="4276000" />
+      <workItem from="1720729177626" duration="4506000" />
+      <workItem from="1722737529870" duration="3621000" />
+      <workItem from="1723139872460" duration="61000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1692668118762</created>
@@ -338,7 +366,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695752978314</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Update workspace configuration and fix import path in Register.jsx&#10;&#10;The main adjustments in the workspace.xml file include setting the git-widget-placeholder to 'master' and adding the GithubPullRequestsUISettings component. In client/src/pages/PreAuth/Register.jsx, the import path for RegisterForm has been updated for the directory change.">
+      <option name="closed" value="true" />
+      <created>1702756334427</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702756334427</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -384,6 +420,8 @@
     <MESSAGE value="google integrated" />
     <MESSAGE value="stripe" />
     <MESSAGE value="workout-implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="workout-implementation" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/Hadihw/MU" />
+    <MESSAGE value="Update workspace configuration and fix import path in Register.jsx&#10;&#10;The main adjustments in the workspace.xml file include setting the git-widget-placeholder to 'master' and adding the GithubPullRequestsUISettings component. In client/src/pages/PreAuth/Register.jsx, the import path for RegisterForm has been updated for the directory change." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update workspace configuration and fix import path in Register.jsx&#10;&#10;The main adjustments in the workspace.xml file include setting the git-widget-placeholder to 'master' and adding the GithubPullRequestsUISettings component. In client/src/pages/PreAuth/Register.jsx, the import path for RegisterForm has been updated for the directory change." />
   </component>
 </project>

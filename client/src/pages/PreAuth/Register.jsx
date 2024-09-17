@@ -5,17 +5,19 @@ import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { TypeAnimation } from "react-type-animation";
 import RegisterForm from "../../components/Register/RegisterForm";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
 import googleLogo from '/assets/images/googleLogo.png';
 import { useNavigate } from "react-router-dom";
-
 
 function Register() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [agreeToTerms, setAgreeToTerms] = useState(false);
     const navigate = useNavigate();
 
     const auth = getAuth();
@@ -43,11 +45,14 @@ function Register() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if (!agreeToTerms) {
+            setErrorMessage("Please agree to the Terms of Use.");
+            return;
+        }
         try {
-            const response = await axios.post('/api/auth/register', { firstName, lastName, email, password, confirmPassword });
+            const response = await axios.post('/api/auth/register', { firstName, lastName, email, username, password, confirmPassword });
 
             if (response.status === 201) {
-                // Successful registration, so redirect to dashboard/home
                 navigate("/Login", {
                     state: {
                         email: email,
@@ -57,7 +62,6 @@ function Register() {
             } else {
                 setErrorMessage("Unexpected response from the server.");
             }
-
         } catch (err) {
             if (err.response?.data?.error) {
                 setErrorMessage(err.response.data.error);
@@ -66,48 +70,140 @@ function Register() {
     };
 
     return (
-        <div className="flex bg-light h-screen justify-center py-12 px-4 sm:px-6 lg:px-8">
-            <div className="w-full flex-grow flex justify-center">
-                <div className="w-full">
-                    <img onClick={() => {
-                        navigate("/");
-                    }}
-                         className="mx-auto h-40 w-auto mb-10 cursor-pointer" src="/assets/images/logo(500x500).png" alt="Muscles University" />
-                    <h2 className="text-center text-4xl font-bold tracking-tight font-axiom text-dark">
-                        <TypeAnimation sequence={['Register Now', 2000, 'Create an Account', 2000]} speed={50} className="" wrapper="span" repeat={Infinity} />
-                    </h2>
-                    <form className="mt-8 space-y-6" onSubmit={(e) => handleSubmit(e)}>
-                        <div className="flex flex-col justify-center items-center container-width-class">
-                            {errorMessage && (
-                                <div className="w-1/4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-                                    {errorMessage}
-                                </div>
-                            )}
-                            <RegisterForm firstName={firstName} setFirstName={setFirstName} lastName={lastName} setLastName={setLastName} email={email} setEmail={setEmail} password={password} setPassword={setPassword} confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword} />
-                        </div>
-                        <div className="lg:w-1/4 m-auto space-y-4">
-                            <button type="submit" className="m-auto font-axiom group relative flex w-full justify-center rounded-md border border-transparent bg-dark py-2 px-4 text-sm font-medium text-white hover:bg-dark-500 focus:outline-none focus:ring-2 focus:ring-dark-500 focus:ring-offset-2">
-                                Register
-                            </button>
-                            <button onClick={handleGoogleRegister} className="mt-4 m-auto font-axiom group relative flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                  <img src={googleLogo} alt="Google Logo" className="h-5 w-5" />
-                </span>
-                                Register with Google
-                            </button>
-                            <hr />
-                            <div>
-                                <Link to="/login">
-                                    <button type="submit" className="font-axiom group relative flex w-full justify-center rounded-md border border-transparent bg-medium py-2 px-4 text-sm font-medium text-slate-900 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-dark-500 focus:ring-offset-2">
-                    <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                      <LockClosedIcon className="h-5 w-5 text-dark-500 group-hover:text-dark-400" aria-hidden="true" />
-                    </span>
-                                        Have an account? Login
-                                    </button>
-                                </Link>
+        <div className="flex h-screen bg-lisbonbrown">
+            <div className="hidden lg:block lg:w-1/2 relative">
+                <img
+                    className="object-cover w-full h-full"
+                    src="../../public/assets/images/Colossus.PNG"
+                    alt="Woman using tablet"
+                />
+                <div className="absolute inset-0 bg-black opacity-30"></div> {/* Overlay shadow */}
+            </div>
+            <div className="w-full lg:w-1/2 bg-white p-6 lg:p-12 flex items-center justify-center">
+                <div className="w-full max-w-md">
+                    <h2 className="text-2xl lg:text-3xl font-bold font-axiom mb-6 text-gray-800">Sign Up</h2>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        {errorMessage && (
+                            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                {errorMessage}
+                            </div>
+                        )}
+                        <div className="flex space-x-4">
+                            <div className="flex-1">
+                                <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                <input
+                                    type="text"
+                                    id="firstName"
+                                    className="mt-1 block w-full border-0 border-b-2 border-gray-300 focus:border-dark focus:ring-0 bg-transparent"
+                                    placeholder="First Name"
+                                    value={firstName}
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="flex-1">
+                                <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                <input
+                                    type="text"
+                                    id="lastName"
+                                    className="mt-1 block w-full border-0 border-b-2 border-gray-300 focus:border-dark focus:ring-0 bg-transparent"
+                                    placeholder="Last Name"
+                                    value={lastName}
+                                    onChange={(e) => setLastName(e.target.value)}
+                                    required
+                                />
                             </div>
                         </div>
+                        <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                className="mt-1 block w-full border-0 border-b-2 border-gray-300 focus:border-dark focus:ring-0 bg-transparent"
+                                placeholder="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                            <input
+                                type="text"
+                                id="username"
+                                className="mt-1 block w-full border-0 border-b-2 border-gray-300 focus:border-dark focus:ring-0 bg-transparent"
+                                placeholder="Username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                            <input
+                                type="password"
+                                id="password"
+                                className="mt-1 block w-full border-0 border-b-2 border-gray-300 focus:border-dark focus:ring-0 bg-transparent"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                className="mt-1 block w-full border-0 border-b-2 border-gray-300 focus:border-dark focus:ring-0 bg-transparent"
+                                placeholder="Confirm Password"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="flex items-center">
+                            <input
+                                id="agreeToTerms"
+                                type="checkbox"
+                                className="h-4 w-4 text-dark focus:ring-white border-gray-300 rounded"
+                                checked={agreeToTerms}
+                                onChange={(e) => setAgreeToTerms(e.target.checked)}
+                                required
+                            />
+                            <label htmlFor="agreeToTerms" className="ml-2 block text-sm text-gray-900">
+                                I agree to the Terms of Use
+                            </label>
+                        </div>
+                        <div>
+                            <button
+                                type="submit"
+                                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-dark hover:bg-dark hover:opacity-90"
+                            >
+                                Sign Up
+                            </button>
+                        </div>
                     </form>
+                    <div className="mt-4 flex items-center justify-between">
+                        <hr className="w-full border-gray-300" />
+                        <span className="px-2 text-gray-500 text-sm">or</span>
+                        <hr className="w-full border-gray-300" />
+                    </div>
+                    <div className="mt-4">
+                        <button
+                            onClick={handleGoogleRegister}
+                            className="w-full flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dark"
+                        >
+                            <img src={googleLogo} alt="Google Logo" className="h-5 w-5 mr-2" />
+                            Register with Google
+                        </button>
+                    </div>
+                    <p className="mt-4 text-center text-sm text-gray-600">
+                        Already have an account?{' '}
+                        <Link to="/login" className="font-medium text-dark hover:text-dark hover:opacity-90">
+                            Sign in →
+                        </Link>
+                    </p>
                 </div>
             </div>
         </div>

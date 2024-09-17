@@ -92,7 +92,7 @@ const Benefits = () => {
     return (
 
         <section className="bg-black">
-            <div className="container mx-auto px-4 flex flex-col lg:flex-row justify-center items-center">
+            <div className="container mx-auto px-4 flex flex-col lg:flex-row justify-center items-center py-32 md:py-32">
                 {/* Benefits list */}
                 <div  className="w-full lg:w-2/5">
                     <SlideInOnViewAnimation direction={"left"}>
@@ -242,7 +242,7 @@ const LandingPage = () => {
 
                 </div>
             </div>
-            <Features />
+            {/*<Features />*/}
 
             <Benefits />
 

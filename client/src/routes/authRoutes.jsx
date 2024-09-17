@@ -22,13 +22,13 @@ function RedirectToLanding() {
 function AuthRoutes() {
     return (
         <Routes>
+            {/*<Route path="/comingsoon" element={<ComingSoon />} />*/}
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/about" element={<About/>} />
             <Route path="/faqs" element={<Faqs/>} />
             <Route path="/contactus" element={<ContactUs />} />
-            <Route path="/comingsoon" element={<ComingSoon />} />
             <Route path="*" element={<RedirectToLanding />} />
         </Routes>
     );

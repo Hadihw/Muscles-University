@@ -54,11 +54,17 @@ body,
 .btn-light {
     @apply bg-light text-black px-6 py-2 rounded font-axiom;
     @apply shadow-md hover:shadow-lg active:shadow-inner;
-    @apply hover:-translate-y-1 hover:bg-dark active:scale-100 hover:text-white hover:scale-110;;
+    @apply hover:-translate-y-1 hover:bg-dark active:scale-100 hover:text-white hover:scale-110;
 }
 
 .header-transition {
     transition: background-color 0.3s ease, padding 0.3s ease, color 0.3s ease;
+}
+
+@layer base {
+  :root {
+        --radius:0.5rem;
+    }
 }
 
 

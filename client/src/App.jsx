@@ -12,6 +12,8 @@ import { setLoggedIn, setLoggedOut, setLoading, selectLoggedIn, selectLoading } 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import logo from '/assets/images/logo(500x500).png';
+import '../Firebase/firebaseConfig';
+import LoadingIndicator from "./components/UI/LoadingIndicator";
 
 function App() {
     const loggedIn = useSelector(selectLoggedIn);
@@ -107,7 +109,7 @@ function App() {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <LoadingIndicator />;
     }
 
     return (

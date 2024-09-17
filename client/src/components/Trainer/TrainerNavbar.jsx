@@ -9,7 +9,14 @@ import { useDispatch } from 'react-redux';
 import { setLoggedOut } from "../../Redux/authSlice";
 
 const NavItem = ({ path, IconComponent, label }) => (
-	<NavLink to={path} activeClassName="bg-dark text-white px-4 py-2 rounded-md" className="w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start">
+	<NavLink 
+		to={path} 
+		className={({ isActive }) => 
+			`w-full px-4 py-2 rounded-md flex items-center justify-center lg:justify-start ${
+				isActive ? "bg-dark text-white" : ""
+			}`
+		}
+	>
 		<IconComponent className="w-8 h-8" />
 		<span className="lg:inline hidden ml-4">{label}</span>
 	</NavLink>
