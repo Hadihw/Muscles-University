@@ -54,7 +54,7 @@ const Background = () => {
 };
 
 const ComingSoon = () => {
-    const launchDate = '2023-12-31'; // Set your launch date (YYYY-MM-DD)
+
 
     return (
         <div className="relative min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-800">
